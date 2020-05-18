@@ -18,5 +18,19 @@ public class Persistence {
         manager.close();
         factory.close();
     }
+	public static void teste() {
+		DonatorVO donator = new DonatorVO();
+		donator.setName("Kaique");
+		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        
+        manager.getTransaction().begin();
+        manager.persist(donator);
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
+	}
 
 }
