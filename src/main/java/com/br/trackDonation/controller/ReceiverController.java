@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class ReceiverController {
 	
-	@GetMapping("/receiver")
+	@GetMapping("/receiver/register")
 	public String getReceiver() {
 		return "String";
 	}

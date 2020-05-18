@@ -1,7 +1,5 @@
 package com.br.trackDonation.domains;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +26,9 @@ public class DonatorVO {
 	
 	@Column(name = "Doacao")
 	private String donation;
+	
+	@Column(name = "dataCadastro")
+	private String registerDate;
 	
 	public Integer getId() {
 		return id;
@@ -69,15 +70,11 @@ public class DonatorVO {
 		this.donation = donation;
 	}
 
-	public LocalDate getRegisterDate() {
+	public String getRegisterDate() {
 		return registerDate;
 	}
 
-	public void setRegisterDate(LocalDate registerDate) {
+	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
 	}
-
-	@Column(name = "dataCadastro")
-	private LocalDate registerDate;
-	
 }
