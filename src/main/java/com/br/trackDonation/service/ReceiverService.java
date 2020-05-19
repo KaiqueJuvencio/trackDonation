@@ -1,5 +1,5 @@
 package com.br.trackDonation.service;
 
-public class ReceiverService {
-
+public interface ReceiverService {
+	public String registerReceiver(String name, String donation, String family);
 }

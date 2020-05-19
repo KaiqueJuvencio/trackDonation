@@ -27,6 +27,9 @@ target/
 /.nb-gradle/
 build/
 
+#JPA
+/persistence.xml
+
 ### VS Code ###
 .vscode/
 

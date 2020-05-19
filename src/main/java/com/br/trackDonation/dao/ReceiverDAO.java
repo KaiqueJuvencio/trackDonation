@@ -1,5 +1,7 @@
 package com.br.trackDonation.dao;
 
-public class ReceiverDAO {
+public interface ReceiverDAO {
+	
+	public void registerReceiver(String name, String donation, String family);
 
 }

@@ -1,16 +1,38 @@
 package com.br.trackDonation.dao.Impl;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-@RestController
-@RequestMapping("/")
-public class ReceiverDAOImpl {
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import org.springframework.stereotype.Repository;
+
+import com.br.trackDonation.dao.ReceiverDAO;
+import com.br.trackDonation.domains.ReceiverVO;
+
+@Repository
+public class ReceiverDAOImpl implements ReceiverDAO{
 	
-	@GetMapping("receiver/register")
-	public String register(@RequestParam String name, @RequestParam String donation, @RequestParam String family) {
-		return "Cadastrado com sucesso";
+	@Override
+	public void registerReceiver(String name, String donation, String family) {
+		ReceiverVO receiver = new ReceiverVO();
+		Date date = new Date();
+		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		receiver.setName(name);
+		receiver.setDoacao(donation);
+		receiver.setFamily(family);
+		receiver.setRegisterDate(formatador.format(date.getTime()));
+		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        
+        manager.getTransaction().begin();
+        manager.persist(receiver);
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
 	}
 }
