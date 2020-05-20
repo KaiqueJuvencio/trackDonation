@@ -26,6 +26,17 @@ public class ReceiverVO {
 	
 	@Column(name = "DataCadastrada")
 	private String registerDate;
+	
+	@Column(name = "Foto")
+	private String photo;
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public Integer getId() {
 		return id;
