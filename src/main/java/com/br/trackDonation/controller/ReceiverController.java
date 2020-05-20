@@ -1,7 +1,7 @@
 package com.br.trackDonation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +15,7 @@ public class ReceiverController {
 	@Autowired
 	private ReceiverService receiverService;
 	
-	@GetMapping("receiver/register")
+	@PostMapping("receiver/register")
 	public String register(@RequestParam String name, @RequestParam String donation, @RequestParam String family) {
 		return receiverService.registerReceiver(name, donation, family);
 	}
