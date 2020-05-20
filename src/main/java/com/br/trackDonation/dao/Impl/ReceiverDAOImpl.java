@@ -15,7 +15,7 @@ import com.br.trackDonation.domains.ReceiverVO;
 public class ReceiverDAOImpl implements ReceiverDAO{
 	
 	@Override
-	public void registerReceiver(String name, String donation, String family) {
+	public void registerReceiver(String name, String donation, String family, String photo) {
 		ReceiverVO receiver = new ReceiverVO();
 		Date date = new Date();
 		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -24,6 +24,7 @@ public class ReceiverDAOImpl implements ReceiverDAO{
 		receiver.setDoacao(donation);
 		receiver.setFamily(family);
 		receiver.setRegisterDate(formatador.format(date.getTime()));
+		receiver.setPhoto(photo);
 		
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA

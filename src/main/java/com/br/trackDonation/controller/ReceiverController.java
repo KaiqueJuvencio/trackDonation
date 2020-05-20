@@ -1,5 +1,7 @@
 package com.br.trackDonation.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ public class ReceiverController {
 	private ReceiverService receiverService;
 	
 	@PostMapping("receiver/register")
-	public String register(@RequestParam String name, @RequestParam String donation, @RequestParam String family) {
+	public String register(@RequestParam String name, @RequestParam String donation, @RequestParam String family) throws IOException {
 		return receiverService.registerReceiver(name, donation, family);
 	}
 }
