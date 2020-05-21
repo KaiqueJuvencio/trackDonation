@@ -12,7 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class JavaMailHelper {
-	public static void main(String[] args) {
+	public void sendMail(String donatorMail) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -35,7 +35,7 @@ public class JavaMailHelper {
 			// Remetente
 
 			Address[] toUser = InternetAddress
-					.parse("kaiquejuvenciocosta@gmail.com, giovanna.novas@hotmail.com");
+					.parse(donatorMail);
 
 			message.setRecipients(Message.RecipientType.TO, toUser);
 			message.setSubject("Enviando email com JavaMail");// Assunto
