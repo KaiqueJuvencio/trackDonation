@@ -2,17 +2,23 @@ package com.br.trackDonation.helper;
 
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class JavaMailHelper {
-	public void sendMail(String donatorMail) {
+	public void sendMail(String donatorMail, String donatorName, String receiverName, String receiverFamily, String receiverPhoto) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -38,10 +44,24 @@ public class JavaMailHelper {
 					.parse(donatorMail);
 
 			message.setRecipients(Message.RecipientType.TO, toUser);
-			message.setSubject("Enviando email com JavaMail");// Assunto
-			message.setText("Enviei este email utilizando JavaMail com minha conta GMail!");
-
-			/** Método para enviar a mensagem criada */
+			message.setSubject("Rastreio de doação IRES");// Assunto
+			
+			String msgBody = "Olá " + donatorName + " gostariamos de dar um feedback sobre a sua doação. Ela foi doada para o(a) " + receiverName + " da família " + receiverFamily;
+			
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+	        messageBodyPart.setText(msgBody);
+			
+			Multipart multipart = new MimeMultipart();
+	        multipart.addBodyPart(messageBodyPart);
+	        
+	        messageBodyPart = new MimeBodyPart();
+			DataSource source = new FileDataSource("C:/projetos/trackDonation/pictures/" + receiverPhoto);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			multipart.addBodyPart(messageBodyPart);
+	        
+	        message.setContent(multipart);
+	        
+	        /** Método para enviar a mensagem criada */
 			Transport.send(message);
 
 			System.out.println("Feito!!!");

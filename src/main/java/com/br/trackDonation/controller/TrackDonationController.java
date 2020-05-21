@@ -24,34 +24,31 @@ public class TrackDonationController {
 	
 	@PostMapping("track-donation")
 	public List<Object[]> tracking(@RequestParam String donation) throws IOException, JSONException {
-		FileHelper file = new FileHelper();
-		file.visualizarArquivos();
 		
-		List<Object[]> result = trackDonationService.tracking(donation);
 		
-		Gson g = new Gson();
-		String str = g.toJson(result);
+		List<Object[]> trackDonationQuery = trackDonationService.tracking(donation);
 		
-		StringBuilder strBuilder = new StringBuilder();
-		
-		for(Object[] obj: result) {
-			String emailDonators = g.toJson(obj[1]);
-			String phoneDonators = g.toJson(obj[3]);
-			
-			strBuilder.append(emailDonators.replace("\"", ""));
-			strBuilder.append(",");
-				
-			System.out.println("Email Donators: " + emailDonators + " Phone Donators: " + phoneDonators);
-		}
+		Gson gson = new Gson();
+		String trackDonationQueryStr = gson.toJson(trackDonationQuery);
 		
 		JavaMailHelper javaMail = new JavaMailHelper();
-		javaMail.sendMail(strBuilder.toString());
 		
-		System.out.println(strBuilder.toString());
+		FileHelper file = new FileHelper();
 		
-//		JSONObject jsonObject = new JSONObject(str);
-		
-		System.out.println("RESULTADO: " + str);
-		return result;
+		for(Object[] each: trackDonationQuery) {
+			String receiverDonationNumber = gson.toJson(each[0]).replace("\"", "");
+			String donatorMail = gson.toJson(each[1]).replace("\"", "");
+			String donatorName = gson.toJson(each[2]).replace("\"", "");
+			String donatorPhone = gson.toJson(each[3]).replace("\"", "");
+			String receiverName = gson.toJson(each[4]).replace("\"", "");
+			String receiverFamily = gson.toJson(each[5]).replace("\"", "");
+			
+			String receiverPhoto = file.verifiedDonationPhoto(receiverDonationNumber);
+			
+			javaMail.sendMail(donatorMail, donatorName, receiverName, receiverFamily, receiverPhoto);
+		}
+					
+		System.out.println("RESULTADO: " + trackDonationQueryStr);
+		return trackDonationQuery;
 	}
 }
