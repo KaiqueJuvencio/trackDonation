@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileHelper {
-	private String directory = "C:\\projetos\\trackDonation\\pictures";
+	private String directory = "C:\\Users\\kaiqu\\Desktop\\trackDonation";
 
 	public void visualizarArquivos() throws IOException {
 		String[] tempArray;

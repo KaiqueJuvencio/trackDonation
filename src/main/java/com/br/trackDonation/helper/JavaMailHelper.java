@@ -55,7 +55,7 @@ public class JavaMailHelper {
 	        multipart.addBodyPart(messageBodyPart);
 	        
 	        messageBodyPart = new MimeBodyPart();
-			DataSource source = new FileDataSource("C:/projetos/trackDonation/pictures/" + receiverPhoto);
+			DataSource source = new FileDataSource("C:\\Users\\kaiqu\\Desktop\\trackDonation\\" + receiverPhoto);
 			messageBodyPart.setDataHandler(new DataHandler(source));
 			multipart.addBodyPart(messageBodyPart);
 	        

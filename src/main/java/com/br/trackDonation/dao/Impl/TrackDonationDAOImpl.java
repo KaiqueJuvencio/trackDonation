@@ -23,7 +23,8 @@ public class TrackDonationDAOImpl implements TrackDonationDAO{
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
         
-        Query query = manager.createNativeQuery("select D.doacao, D.Email, D.Nome as D_NOME, D.Telefone, R.Nome as R_NOME, R.Familia from Donator as D,Receiver as R where D.doacao='34' and R.DoacaoRecebida='34'");
+        Query query = manager.createNativeQuery("select D.doacao, D.Email, D.Nome as D_NOME, D.Telefone, R.Nome as R_NOME, R.Familia from Donator as D,Receiver as R where D.doacao=:donationParam and R.DoacaoRecebida=:donationParam");
+        query.setParameter("donationParam", donation);
         
         manager.getTransaction().begin();
         manager.persist(receiver);
