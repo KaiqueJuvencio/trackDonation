@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,8 @@ public class TrackDonationController {
 
 	@Autowired
 	private TrackDonationService trackDonationService;
-
+	
+	@CrossOrigin
 	@PostMapping("/track-donation")
 	public String tracking(@RequestParam String donation)
 			throws IOException, JSONException {
@@ -46,8 +48,9 @@ public class TrackDonationController {
 			String receiverPhoto = file.verifiedDonationPhoto(receiverDonationNumber);
 
 			javaMail.sendMail(donatorMail, donatorName, receiverName, receiverFamily, receiverPhoto);
+			System.out.println(receiverPhoto);
 		}
-
+		
 		System.out.println("RESULTADO: " + trackDonationQueryStr);
 	
 		return "Sucesso";

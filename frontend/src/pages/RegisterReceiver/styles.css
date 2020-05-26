@@ -1,0 +1,210 @@
+
+.symptoms-container{
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symptoms-container .content {
+    width: 100%;
+    padding: 96px;
+    background: #f0f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+}
+
+.symptoms-container .content .check label{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: -2px;
+}
+
+.symptoms-container .content .check{
+    width: 100%;
+    padding: 70px;
+    background: #f0f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    line-height: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.symptoms-container .content .check .check-input input:checked{
+    background-color: aquamarine;
+}
+.symptoms-container .content .check .check-input input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgb(180, 47, 47);
+  }
+
+.symptoms-container .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.symptoms-container .content section h1{
+    margin: 64px 0 32px;
+    font-size: 32px;
+}
+
+.symptoms-container .content section p{
+    font-size: 18px;
+    color: #737380;
+    line-height: 32px;
+}
+
+.symptoms-container .content form{
+    width: 100%;
+    max-width: 450px;
+
+}
+
+.symptoms-container .content form input{
+    margin-top: 8px;
+}
+
+.symptoms-container .content form .input-group{
+    display: flex;
+    
+}
+
+.symptoms-container .content form .input-group input + input{
+    margin-left: 8px;
+}
+
+.check-in-descricao{
+    margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+  .symptoms-container .content section h1{
+    margin: 64px 0 32px;
+    font-size: 32px;
+    padding-left: 6%;
+  }
+  .symptoms-container .content section p{
+    font-size: 18px;
+    color: #737380;
+    line-height: 32px;
+    padding-left: 6%;
+    margin: 0 auto;
+}
+  .symptoms-container .content form{
+    width: 100%;
+    max-width: 450px;
+    padding: 6%;
+  }
+
+    .symptoms-container .content {
+        width: 100%;
+        padding: 0px;
+        height: 100vh;
+        margin: 0 auto;
+        background: #f0f0f5;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+
+        display: flex;
+        flex-direction: column;
+    }
+    .symptoms-container .content .check{
+      width: 100%;
+      padding: 0px;
+      background: #f0f0f5;
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      line-height: 30px;
+  
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+}
+
+/* Customize the label (the container) */
+.symptoms-container .content .check .check-input .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .symptoms-container .content .check .check-input .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #ccc;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: rgb(255, 134, 154);
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .symptoms-container .content .check .check-input .container input:checked ~ .checkmark {
+    background-color: #E02041;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .symptoms-container .content .check .check-input .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .symptoms-container .content .check .check-input .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .symptoms-container .content .check .check-input .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
