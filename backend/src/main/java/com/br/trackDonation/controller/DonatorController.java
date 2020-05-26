@@ -27,7 +27,7 @@ public class DonatorController {
 	}
 	
 	@GetMapping("/donator")
-	public List<Object[]> getDonators() {
+	public List<Object[]> getAllDonators() {
 		return donatorService.getAllDonators();
 	}
 }

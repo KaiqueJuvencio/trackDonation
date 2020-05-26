@@ -1,6 +1,7 @@
 package com.br.trackDonation.service.Impl;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ public class ReceiverServiceImpl implements ReceiverService {
 		String photoName = file.verifiedDonationPhoto(donation);
 		receiverDAO.registerReceiver(name, donation, family, photoName);
 		return "Receptor cadastrado com sucesso";
+	}
+	
+	@Override
+	public List<Object[]> getAllReceivers() {
+		return receiverDAO.getAllReceivers();
 	}
 
 }
