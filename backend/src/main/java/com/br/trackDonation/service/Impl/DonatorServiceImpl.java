@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.br.trackDonation.dao.DonatorDAO;
 import com.br.trackDonation.service.DonatorService;
@@ -20,6 +21,7 @@ public class DonatorServiceImpl implements DonatorService {
 		return "Doador cadastrado com sucesso";
 	}
 	
+	@CrossOrigin
 	@Override
 	public List<Object[]> getAllDonators() {
 		return donatorDAO.getAllDonators();

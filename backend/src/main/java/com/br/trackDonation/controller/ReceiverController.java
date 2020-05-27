@@ -34,6 +34,7 @@ public class ReceiverController {
 		return receiverService.registerReceiver(name, donation, family);
 	}
 	
+	@CrossOrigin
 	@GetMapping("/receiver")
 	public List<Object[]> getAllReceivers() {
 		return receiverService.getAllReceivers();

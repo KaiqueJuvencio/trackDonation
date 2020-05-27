@@ -11,6 +11,32 @@ export default function RegisterReceiver() {
     const [name, setName] = useState('');
     const [file, setFile] = useState('');
 
+    const [receivers, setReceiver] = useState([]);
+
+    const ReceiversComponent = (note) => {
+        return (
+            <table>
+                <tr>
+                    <th>Doação</th>
+                    <th>Nome</th>
+                    <th>Família</th>
+                    <th>Foto</th>
+                    <th>Data Cadastro</th>
+                </tr>
+                {receivers.map(receiver => (
+                    <tr>
+                        <td>{receiver[0]}</td>
+                        <td>{receiver[2]}</td>
+                        <td>{receiver[1]}</td>
+                        <td>{receiver[3]}</td>
+                        <td>{receiver[4]}</td>
+                    </tr>
+                ))}
+            </table>
+
+        )
+    }
+
     async function registerReceiver() {
         console.log(file.value);
         console.log(file.name);
@@ -26,6 +52,19 @@ export default function RegisterReceiver() {
             alert(err);
         }
     }
+
+    async function handleReceiver() {
+        try {
+            trackDonationApi.get('/receiver').then(res => {
+                setReceiver(res.data);
+                console.log(res.data[0]);
+                console.log(res.data.length);
+            });
+        } catch (err) {
+            alert(err);
+        }
+    }
+
     function onChangeHandler(event) {
 
         console.log(event.target.files[0])
@@ -68,11 +107,11 @@ export default function RegisterReceiver() {
                         <FiArrowLeft size={16} color="#E02041" />
                         Voltar
                     </Link>
+
+                    <button onClick={handleReceiver} type="button">Lets Start</button>
+                    <ReceiversComponent />
+
                 </section>
-
-
-
-
             </div>
         </div>
     )
