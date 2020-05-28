@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +31,15 @@ public class DonatorController {
 	@GetMapping("/donator")
 	public List<Object[]> getAllDonators() {
 		return donatorService.getAllDonators();
+	}
+	
+	@PutMapping("/donator")
+	public String updateDonator(@RequestParam Integer id, @RequestParam String name, @RequestParam String donation, @RequestParam String email, @RequestParam String phone) {
+		return donatorService.updateDonator(id, name, donation, email, phone);
+	}
+	
+	@DeleteMapping("/donator")
+	public String deleteDonator(@RequestParam Integer id) {
+		return donatorService.deleteDonator(id);
 	}
 }

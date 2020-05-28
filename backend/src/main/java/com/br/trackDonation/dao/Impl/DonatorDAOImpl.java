@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.br.trackDonation.dao.DonatorDAO;
 import com.br.trackDonation.domains.DonatorVO;
+import com.br.trackDonation.domains.ReceiverVO;
 
 @Repository
 public class DonatorDAOImpl implements DonatorDAO {
@@ -54,5 +55,43 @@ public class DonatorDAOImpl implements DonatorDAO {
         factory.close();
         
         return result;
+	}
+	
+	@Override
+	public void updateDonator(Integer id, String name, String donation, String email, String phone) {
+		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        
+        Date date = new Date();
+		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        DonatorVO donator = manager.find(DonatorVO.class, id);
+         
+        manager.getTransaction().begin();
+        donator.setName(name);
+		donator.setDonation(donation);
+		donator.setEmail(email);
+		donator.setPhone(phone);
+		donator.setRegisterDate(formatador.format(date.getTime()));
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
+	}
+	
+	@Override
+	public void deleteDonator(Integer id) {
+		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+
+        DonatorVO donator = manager.find(DonatorVO.class, id);
+         
+        manager.getTransaction().begin();
+        manager.remove(donator);
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
 	}
 }

@@ -21,10 +21,21 @@ public class DonatorServiceImpl implements DonatorService {
 		return "Doador cadastrado com sucesso";
 	}
 	
-	@CrossOrigin
 	@Override
 	public List<Object[]> getAllDonators() {
 		return donatorDAO.getAllDonators();
+	}
+	
+	@Override
+	public String updateDonator(Integer id, String name, String donation, String email, String phone) {
+		donatorDAO.updateDonator(id, name, donation, email, phone);
+		return "Doador atualizado com sucesso";
+	}
+	
+	@Override
+	public String deleteDonator(Integer id) {
+		donatorDAO.deleteDonator(id);
+		return "Doador excluído com sucesso";
 	}
 
 }
