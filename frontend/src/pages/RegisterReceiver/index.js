@@ -17,6 +17,7 @@ export default function RegisterReceiver() {
         return (
             <table>
                 <tr>
+                    <th>Id</th>
                     <th>Doação</th>
                     <th>Nome</th>
                     <th>Família</th>
@@ -26,10 +27,11 @@ export default function RegisterReceiver() {
                 {receivers.map(receiver => (
                     <tr>
                         <td>{receiver[0]}</td>
-                        <td>{receiver[2]}</td>
                         <td>{receiver[1]}</td>
+                        <td>{receiver[2]}</td>
                         <td>{receiver[3]}</td>
                         <td>{receiver[4]}</td>
+                        <td>{receiver[5]}</td>
                     </tr>
                 ))}
             </table>
@@ -50,6 +52,7 @@ export default function RegisterReceiver() {
                 await trackDonationApi.post('/receiver/register?donation=' + donation + '&family=' + family + '&name=' + name, data, {}).then(res => {
                     console.log(res.statusText)
                 })
+                alert("Cadastro realizado com sucesso!")
             } catch (err) {
                 alert(err);
             }
@@ -60,8 +63,6 @@ export default function RegisterReceiver() {
         try {
             trackDonationApi.get('/receiver').then(res => {
                 setReceiver(res.data);
-                console.log(res.data[0]);
-                console.log(res.data.length);
             });
         } catch (err) {
             alert(err);

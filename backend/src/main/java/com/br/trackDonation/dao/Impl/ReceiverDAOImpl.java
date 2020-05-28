@@ -46,7 +46,7 @@ public class ReceiverDAOImpl implements ReceiverDAO{
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
         
-        Query query = manager.createNativeQuery("select R.DoacaoRecebida, R.Familia, R.Nome as D_NOME, R.Foto, R.DataCadastrada from Receiver as R");
+        Query query = manager.createNativeQuery("select R.Id, R.DoacaoRecebida, R.Nome as D_NOME, R.Familia, R.Foto, R.DataCadastrada from Receiver as R");
 
         List<Object[]> result = query.getResultList();
         
