@@ -42,20 +42,12 @@ public class ReceiverDAOImpl implements ReceiverDAO{
 	
 	@Override
 	public List<Object[]> getAllReceivers() {
-		
-		ReceiverVO receiver = new ReceiverVO();
-		DonatorVO donator = new DonatorVO();
-		
+			
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
         
         Query query = manager.createNativeQuery("select R.DoacaoRecebida, R.Familia, R.Nome as D_NOME, R.Foto, R.DataCadastrada from Receiver as R");
 
-        
-        manager.getTransaction().begin();
-        manager.persist(receiver);
-        manager.getTransaction().commit();
-        
         List<Object[]> result = query.getResultList();
         
         manager.close();
