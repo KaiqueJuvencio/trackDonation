@@ -19,6 +19,10 @@ public class ReceiverDAOImpl implements ReceiverDAO{
 	
 	@Override
 	public void registerReceiver(String name, String donation, String family, String photo) {
+		
+		EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+		
 		ReceiverVO receiver = new ReceiverVO();
 		Date date = new Date();
 		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -28,10 +32,7 @@ public class ReceiverDAOImpl implements ReceiverDAO{
 		receiver.setFamily(family);
 		receiver.setRegisterDate(formatador.format(date.getTime()));
 		receiver.setPhoto(photo);
-		
-        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
-        
+		      
         manager.getTransaction().begin();
         manager.persist(receiver);
         manager.getTransaction().commit();
@@ -54,5 +55,43 @@ public class ReceiverDAOImpl implements ReceiverDAO{
         factory.close();
         
         return result;
+	}
+	
+	@Override
+	public void updateReceiver(Integer id, String name, String donation, String family, String photo) {
+		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        
+        Date date = new Date();
+		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        ReceiverVO receiver = manager.find(ReceiverVO.class, id);
+         
+        manager.getTransaction().begin();
+        receiver.setName(name);
+        receiver.setDoacao(donation);
+		receiver.setFamily(family);
+		receiver.setRegisterDate(formatador.format(date.getTime()));
+		receiver.setPhoto(photo);
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
+	}
+	
+	@Override
+	public void deleteReceiver(Integer id) {
+		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+
+        ReceiverVO receiver = manager.find(ReceiverVO.class, id);
+         
+        manager.getTransaction().begin();
+        manager.remove(receiver);
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
 	}
 }

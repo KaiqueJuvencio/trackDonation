@@ -20,6 +20,7 @@ public class ReceiverServiceImpl implements ReceiverService {
 	public String registerReceiver(String name, String donation, String family) throws IOException {
 		FileHelper file = new FileHelper();
 		String photoName = file.verifiedDonationPhoto(donation);
+		
 		receiverDAO.registerReceiver(name, donation, family, photoName);
 		return "Receptor cadastrado com sucesso";
 	}
@@ -27,6 +28,21 @@ public class ReceiverServiceImpl implements ReceiverService {
 	@Override
 	public List<Object[]> getAllReceivers() {
 		return receiverDAO.getAllReceivers();
+	}
+	
+	@Override
+	public String updateReceiver(Integer id, String name, String donation, String family) throws IOException {
+		FileHelper file = new FileHelper();
+		String photoName = file.verifiedDonationPhoto(donation);
+		
+		receiverDAO.updateReceiver(id, name, donation, family, photoName);
+		return "Receptor atualizado com sucesso";
+	}
+	
+	@Override
+	public String deleteReceiver(Integer id) {
+		receiverDAO.deleteReceiver(id);
+		return "Receptor excluído com sucesso";
 	}
 
 }

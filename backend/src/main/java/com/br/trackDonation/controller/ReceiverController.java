@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -38,5 +40,18 @@ public class ReceiverController {
 	@GetMapping("/receiver")
 	public List<Object[]> getAllReceivers() {
 		return receiverService.getAllReceivers();
+	}
+	
+	@CrossOrigin
+	@PutMapping("/receiver")
+	public String updateReceiver(@RequestParam Integer id, @RequestParam String name, @RequestParam String donation, @RequestParam String family,
+			@RequestPart("file-data") MultipartFile receiverPhoto) throws IOException {
+		return receiverService.updateReceiver(id, name, donation, family);
+	}
+	
+	@CrossOrigin
+	@DeleteMapping("/receiver")
+	public String deleteReceiver(@RequestParam Integer id){
+		return receiverService.deleteReceiver(id);
 	}
 }
