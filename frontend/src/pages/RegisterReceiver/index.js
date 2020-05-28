@@ -43,13 +43,16 @@ export default function RegisterReceiver() {
 
         const data = new FormData()
         data.append('file-data', file.selectedFile)
-
-        try {
-            await trackDonationApi.post('/receiver/register?donation=' + donation + '&family=' + family + '&name=' + name, data, {}).then(res => {
-                console.log(res.statusText)
-            })
-        } catch (err) {
-            alert(err);
+        if(donation==='' || family==='' || name===''){
+            alert("Insira as informações necessárias para cadastro!");
+        }else{
+            try {
+                await trackDonationApi.post('/receiver/register?donation=' + donation + '&family=' + family + '&name=' + name, data, {}).then(res => {
+                    console.log(res.statusText)
+                })
+            } catch (err) {
+                alert(err);
+            }
         }
     }
 
@@ -108,7 +111,7 @@ export default function RegisterReceiver() {
                         Voltar
                     </Link>
 
-                    <button onClick={handleReceiver} type="button">Lets Start</button>
+                    <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
                     <ReceiversComponent />
 
                 </section>
