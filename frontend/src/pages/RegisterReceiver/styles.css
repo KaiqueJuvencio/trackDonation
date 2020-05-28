@@ -60,7 +60,6 @@
 
 .symptoms-container .content section{
     width: 100%;
-    max-width: 380px;
 }
 
 .symptoms-container .content section h1{
@@ -76,8 +75,6 @@
 
 .symptoms-container .content form{
     width: 100%;
-    max-width: 450px;
-
 }
 
 .symptoms-container .content form input{

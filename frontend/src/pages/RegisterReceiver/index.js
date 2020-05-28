@@ -6,6 +6,7 @@ import compass from '../../assets/compass.png'
 import trackDonationApi from '../../services/trackDonationApi';
 
 export default function RegisterReceiver() {
+    const [id, setId] = useState('');
     const [donation, setDonation] = useState('');
     const [family, setFamily] = useState('');
     const [name, setName] = useState('');
@@ -40,16 +41,50 @@ export default function RegisterReceiver() {
     }
 
     async function registerReceiver() {
-        console.log(file.value);
-        console.log(file.name);
 
         const data = new FormData()
         data.append('file-data', file.selectedFile)
-        if(donation==='' || family==='' || name===''){
+        if (donation === '' || family === '' || name === '') {
             alert("Insira as informações necessárias para cadastro!");
-        }else{
+        } else {
             try {
                 await trackDonationApi.post('/receiver/register?donation=' + donation + '&family=' + family + '&name=' + name, data, {}).then(res => {
+                    console.log(res.statusText)
+                })
+                alert("Cadastro realizado com sucesso!")
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
+    async function updateReceiver() {
+
+        const data = new FormData()
+        data.append('file-data', file.selectedFile)
+        if (donation === '' || family === '' || name === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.put('/receiver?donation=' + donation + '&family=' + family + '&id='+ id + '&name=' + name, data, {}).then(res => {
+                    console.log(res.statusText)
+                })
+                alert("Cadastro realizado com sucesso!")
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
+    async function deleteReceiver() {
+
+        const data = new FormData()
+        data.append('file-data', file.selectedFile)
+        if (id === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.delete('/receiver?id='+ id).then(res => {
                     console.log(res.statusText)
                 })
                 alert("Cadastro realizado com sucesso!")
@@ -84,10 +119,7 @@ export default function RegisterReceiver() {
                     </div>
 
                     <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
-                    <p className="check-in-descricao">Marque as opções de acordo com os sintomas que está sentindo.</p>
-
-
-
+                    <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
                     <form onSubmit={registerReceiver}>
                         <input
                             placeholder="Doação"
@@ -107,6 +139,47 @@ export default function RegisterReceiver() {
                         <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
                         <button className="button" type="submit">Cadastrar</button>
                     </form>
+
+
+                    <h1><FiCheckSquare color="#E02041" />Atualizar Receptor</h1>
+                    <p className="check-in-descricao">Preencha os campos para fazer a atualização de um Receptor.</p>
+                    <form onSubmit={updateReceiver}>
+                        <input
+                            placeholder="Id"
+                            value={id}
+                            onChange={e => setId(e.target.value)}
+                        />
+                        <input
+                            placeholder="Doação"
+                            value={donation}
+                            onChange={e => setDonation(e.target.value)}
+                        />
+                        <input
+                            placeholder="Família"
+                            value={family}
+                            onChange={e => setFamily(e.target.value)}
+                        />
+                        <input
+                            placeholder="Nome"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
+                        <button className="button" type="submit">Atualizar</button>
+                    </form>
+
+
+                    <h1><FiCheckSquare color="#E02041" />Excluir Receptor</h1>
+                    <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
+                    <form onSubmit={deleteReceiver}>
+                        <input
+                            placeholder="Id"
+                            value={id}
+                            onChange={e => setId(e.target.value)}
+                        />
+                        <button className="button" type="submit">Excluir</button>
+                    </form>
+
                     <Link className="back-link" to="/">
                         <FiArrowLeft size={16} color="#E02041" />
                         Voltar
@@ -114,8 +187,9 @@ export default function RegisterReceiver() {
 
                     <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
                     <ReceiversComponent />
-
+                    
                 </section>
+                
             </div>
         </div>
     )

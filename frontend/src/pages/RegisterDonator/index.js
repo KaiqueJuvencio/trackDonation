@@ -7,6 +7,7 @@ import compass from '../../assets/compass.png'
 import trackDonationApi from '../../services/trackDonationApi';
 
 export default function RegisterDonator() {
+    const [id, setId] = useState('');
     const [donation, setDonation] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -63,6 +64,30 @@ export default function RegisterDonator() {
         }
     }
 
+    async function updateDonator() {
+        if (id === '' || donation === '' || email === '' || name === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.put('/donator?donation=' + donation + '&email=' + email + '&id=' + id + '&name=' + name + '&phone=' + phone)
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
+    async function deleteDonator() {
+        if (id === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.delete('/donator?id=' + id)
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
     return (
         <div className="register-donator-container">
             <div className="content">
@@ -97,6 +122,48 @@ export default function RegisterDonator() {
                             onChange={e => setPhone(e.target.value)}
                         />
                         <button className="button" type="submit">Cadastrar</button>
+                    </form>
+
+                    <h1>Alterar Doador</h1>
+                    <p>Aqui estão alguns métodos de prevenções para proteger você e sua família.</p>
+                    <form onSubmit={updateDonator}>
+                        <input
+                            placeholder="Id"
+                            value={id}
+                            onChange={e => setId(e.target.value)}
+                        />
+                        <input
+                            placeholder="Doação"
+                            value={donation}
+                            onChange={e => setDonation(e.target.value)}
+                        />
+                        <input
+                            placeholder="E-mail"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            placeholder="Nome"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        <input
+                            placeholder="Telefone"
+                            value={phone}
+                            onChange={e => setPhone(e.target.value)}
+                        />
+                        <button className="button" type="submit">Atualizar</button>
+                    </form>
+
+                    <h1>Excluir Doador</h1>
+                    <p>Aqui estão alguns métodos de prevenções para proteger você e sua família.</p>
+                    <form onSubmit={deleteDonator}>
+                        <input
+                            placeholder="Id"
+                            value={id}
+                            onChange={e => setId(e.target.value)}
+                        />
+                        <button className="button" type="submit">Excluir</button>
                     </form>
 
                     <Link className="back-link" to="/">
