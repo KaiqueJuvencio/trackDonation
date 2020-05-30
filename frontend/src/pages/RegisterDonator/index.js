@@ -93,7 +93,7 @@ export default function RegisterDonator() {
             <div className="content">
                 <section>
                     <div className="compass-logo">
-                        <img src={compass} className="App-logo" alt="Virus" />
+                        <img src={compass} className="App-logo" alt="compass" />
                         <h2 className="compass-text">Track Donation IRES</h2>
                     </div>
 
