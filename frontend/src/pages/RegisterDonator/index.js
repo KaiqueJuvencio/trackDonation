@@ -98,7 +98,7 @@ export default function RegisterDonator() {
                     </div>
 
                     <h1>Cadastrar Doador</h1>
-                    <p>Aqui estão alguns métodos de prevenções para proteger você e sua família.</p>
+                    <p>Preencha os campos para cadastrar um Doador.</p>
 
                     <form onSubmit={registerDonator}>
                         <input
@@ -125,7 +125,7 @@ export default function RegisterDonator() {
                     </form>
 
                     <h1>Alterar Doador</h1>
-                    <p>Aqui estão alguns métodos de prevenções para proteger você e sua família.</p>
+                    <p>Preencha os campos para fazer a atualização de um Doador.</p>
                     <form onSubmit={updateDonator}>
                         <input
                             placeholder="Id"
@@ -156,7 +156,7 @@ export default function RegisterDonator() {
                     </form>
 
                     <h1>Excluir Doador</h1>
-                    <p>Aqui estão alguns métodos de prevenções para proteger você e sua família.</p>
+                    <p>Informe o Id do Doador que deseja excluir.</p>
                     <form onSubmit={deleteDonator}>
                         <input
                             placeholder="Id"
