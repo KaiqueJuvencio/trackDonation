@@ -8,8 +8,15 @@ import trackDonationApi from '../../services/trackDonationApi';
 export default function RegisterReceiver() {
     const [id, setId] = useState('');
     const [donation, setDonation] = useState('');
-    const [family, setFamily] = useState('');
     const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [rg, setRg] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const [family, setFamily] = useState('');
+    const [residentsQuantity, setResidentsQuantity] = useState('');
+    const [monthGotDonation, setMonthGotDonation] = useState('');
     const [file, setFile] = useState('');
 
     const [receivers, setReceiver] = useState([]);
@@ -41,14 +48,14 @@ export default function RegisterReceiver() {
     }
 
     async function registerReceiver() {
-
+        console.log(address, dateOfBirth, donation, email, family, monthGotDonation, name, phone, residentsQuantity, rg);
         const data = new FormData()
-        data.append('file-data', file.selectedFile)
+        data.append('receiverPhoto', file.selectedFile)
         if (donation === '' || family === '' || name === '') {
             alert("Insira as informações necessárias para cadastro!");
         } else {
             try {
-                await trackDonationApi.post('/receiver/register?donation=' + donation + '&family=' + family + '&name=' + name, data, {}).then(res => {
+                await trackDonationApi.post('/receiver/register?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
                     console.log(res.statusText)
                 })
                 alert("Cadastro realizado com sucesso!")
@@ -61,12 +68,12 @@ export default function RegisterReceiver() {
     async function updateReceiver() {
 
         const data = new FormData()
-        data.append('file-data', file.selectedFile)
+        data.append('receiverPhoto', file.selectedFile)
         if (donation === '' || family === '' || name === '') {
             alert("Insira as informações necessárias para cadastro!");
         } else {
             try {
-                await trackDonationApi.put('/receiver?donation=' + donation + '&family=' + family + '&id='+ id + '&name=' + name, data, {}).then(res => {
+                await trackDonationApi.put('/receiver?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&id=' + id + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
                     console.log(res.statusText)
                 })
                 alert("Cadastro realizado com sucesso!")
@@ -79,12 +86,12 @@ export default function RegisterReceiver() {
     async function deleteReceiver() {
 
         const data = new FormData()
-        data.append('file-data', file.selectedFile)
+        data.append('receiverPhoto', file.selectedFile)
         if (id === '') {
             alert("Insira as informações necessárias para cadastro!");
         } else {
             try {
-                await trackDonationApi.delete('/receiver?id='+ id).then(res => {
+                await trackDonationApi.delete('/receiver?id=' + id).then(res => {
                     console.log(res.statusText)
                 })
                 alert("Cadastro realizado com sucesso!")
@@ -127,15 +134,51 @@ export default function RegisterReceiver() {
                             onChange={e => setDonation(e.target.value)}
                         />
                         <input
+                            placeholder="Nome"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        <input
+                            placeholder="E-mail"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            placeholder="RG"
+                            value={rg}
+                            onChange={e => setRg(e.target.value)}
+                        />
+                        <input
+                            placeholder="Nascimento"
+                            value={dateOfBirth}
+                            onChange={e => setDateOfBirth(e.target.value)}
+                        />
+                        <input
+                            placeholder="Telefone"
+                            value={phone}
+                            onChange={e => setPhone(e.target.value)}
+                        />
+                        <input
+                            placeholder="Endereço"
+                            value={address}
+                            onChange={e => setAddress(e.target.value)}
+                        />
+                        <input
                             placeholder="Família"
                             value={family}
                             onChange={e => setFamily(e.target.value)}
                         />
                         <input
-                            placeholder="Nome"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
+                            placeholder="Qtd. Moradores"
+                            value={residentsQuantity}
+                            onChange={e => setResidentsQuantity(e.target.value)}
                         />
+                        <input
+                            placeholder="Meses Cestas Pegas"
+                            value={monthGotDonation}
+                            onChange={e => setMonthGotDonation(e.target.value)}
+                        />
+                        
                         <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
                         <button className="button" type="submit">Cadastrar</button>
                     </form>
@@ -149,10 +192,40 @@ export default function RegisterReceiver() {
                             value={id}
                             onChange={e => setId(e.target.value)}
                         />
-                        <input
+                         <input
                             placeholder="Doação"
                             value={donation}
                             onChange={e => setDonation(e.target.value)}
+                        />
+                        <input
+                            placeholder="Nome"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        <input
+                            placeholder="E-mail"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            placeholder="RG"
+                            value={rg}
+                            onChange={e => setRg(e.target.value)}
+                        />
+                        <input
+                            placeholder="Nascimento"
+                            value={dateOfBirth}
+                            onChange={e => setDateOfBirth(e.target.value)}
+                        />
+                        <input
+                            placeholder="Telefone"
+                            value={phone}
+                            onChange={e => setPhone(e.target.value)}
+                        />
+                        <input
+                            placeholder="Endereço"
+                            value={address}
+                            onChange={e => setAddress(e.target.value)}
                         />
                         <input
                             placeholder="Família"
@@ -160,9 +233,14 @@ export default function RegisterReceiver() {
                             onChange={e => setFamily(e.target.value)}
                         />
                         <input
-                            placeholder="Nome"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
+                            placeholder="Qtd. Moradores"
+                            value={residentsQuantity}
+                            onChange={e => setResidentsQuantity(e.target.value)}
+                        />
+                        <input
+                            placeholder="Meses Cestas Pegas"
+                            value={monthGotDonation}
+                            onChange={e => setMonthGotDonation(e.target.value)}
                         />
                         <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
                         <button className="button" type="submit">Atualizar</button>
@@ -187,9 +265,9 @@ export default function RegisterReceiver() {
 
                     <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
                     <ReceiversComponent />
-                    
+
                 </section>
-                
+
             </div>
         </div>
     )
