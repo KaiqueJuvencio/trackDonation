@@ -28,9 +28,18 @@ export default function RegisterReceiver() {
                     <th>Id</th>
                     <th>Doação</th>
                     <th>Nome</th>
+                    <th>Email</th>
+                    <th>RG</th>
+                    <th>Nascimento</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
                     <th>Família</th>
-                    <th>Foto</th>
+                    <th>Qtd. Moradores</th>
+                    <th>Meses Cestas Pegas</th>
                     <th>Data Cadastro</th>
+                    <th>Foto</th>
+
+
                 </tr>
                 {receivers.map(receiver => (
                     <tr>
@@ -40,6 +49,13 @@ export default function RegisterReceiver() {
                         <td>{receiver[3]}</td>
                         <td>{receiver[4]}</td>
                         <td>{receiver[5]}</td>
+                        <td>{receiver[6]}</td>
+                        <td>{receiver[7]}</td>
+                        <td>{receiver[8]}</td>
+                        <td>{receiver[9]}</td>
+                        <td>{receiver[10]}</td>
+                        <td>{receiver[11]}</td>
+                        <td>{receiver[12]}</td>
                     </tr>
                 ))}
             </table>
