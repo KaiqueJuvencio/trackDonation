@@ -24,7 +24,7 @@ public class DonatorController {
 	private DonatorService donatorService;
 	
 	@PostMapping("/donator/register")
-	public String register(@RequestParam String name, @RequestParam String donation, @RequestParam String email, @RequestParam String phone) {
+	public String register(@RequestParam(required=false) String name, @RequestParam(required=false) String donation, @RequestParam(required=false) String email, @RequestParam(required=false) String phone) {
 		return donatorService.registerDonator(name, donation, email, phone);
 	}
 	
@@ -34,7 +34,7 @@ public class DonatorController {
 	}
 	
 	@PutMapping("/donator")
-	public String updateDonator(@RequestParam Integer id, @RequestParam String name, @RequestParam String donation, @RequestParam String email, @RequestParam String phone) {
+	public String updateDonator(@RequestParam Integer id, @RequestParam(required=false) String name, @RequestParam(required=false) String donation, @RequestParam(required=false) String email, @RequestParam(required=false) String phone) {
 		return donatorService.updateDonator(id, name, donation, email, phone);
 	}
 	

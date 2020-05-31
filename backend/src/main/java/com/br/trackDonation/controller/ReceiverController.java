@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.br.trackDonation.service.ReceiverService;
 
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 @RequestMapping
@@ -29,17 +30,17 @@ public class ReceiverController {
 
 	@CrossOrigin
 //	@ApiImplicitParam(name = "file-data", value = "inscrito, para-inscricao, historico", paramType = "formData", dataType = "file", required = false)
-	@ApiImplicitParam(name = "address", value = "address", paramType = "query", dataType = "string", required = false)
 	@PostMapping("receiver/register")
-	public String register(@RequestParam String donationReceived, @RequestParam String name,
-			@RequestParam String email, @RequestParam String rg, @RequestParam String dateOfBirth,
-			@RequestParam String phone, @RequestParam String address, @RequestParam String family,
-			@RequestParam Integer residentsQuantity, @RequestParam String monthGotDonation,
-			@RequestPart("file-data") MultipartFile receiverPhoto) throws IOException {
+	public String register(@RequestParam(required=false) String donationReceived, @RequestParam(required=false) String name, @RequestParam(required=false) String email,
+			@RequestParam(required=false) String rg, @RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone,
+			@RequestParam(required=false) String address, @RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity,
+			@RequestParam(required=false) String monthGotDonation, @RequestPart(required=false) MultipartFile receiverPhoto)
+			throws IOException {
 		receiverPhoto.transferTo(
 				new File("C:\\Users\\kaiqu\\Desktop\\trackDonation\\" + receiverPhoto.getOriginalFilename()));
 
-		return receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation);
+		return receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family,
+				residentsQuantity, monthGotDonation);
 	}
 
 	@CrossOrigin
@@ -50,12 +51,13 @@ public class ReceiverController {
 
 	@CrossOrigin
 	@PutMapping("/receiver")
-	public String updateReceiver(@RequestParam Integer id, @RequestParam String donationReceived, @RequestParam String name,
-			@RequestParam String email, @RequestParam String rg, @RequestParam String dateOfBirth,
-			@RequestParam String phone, @RequestParam String address, @RequestParam String family,
-			@RequestParam Integer residentsQuantity, @RequestParam String monthGotDonation,
-			@RequestPart("file-data") MultipartFile receiverPhoto) throws IOException {
-		return receiverService.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation);
+	public String updateReceiver(@RequestParam Integer id, @RequestParam(required=false) String donationReceived,
+			@RequestParam(required=false) String name, @RequestParam(required=false) String email, @RequestParam(required=false) String rg,
+			@RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone, @RequestParam(required=false) String address,
+			@RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity, @RequestParam(required=false) String monthGotDonation,
+			@RequestPart(required=false) MultipartFile receiverPhoto) throws IOException {
+		return receiverService.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address,
+				family, residentsQuantity, monthGotDonation);
 	}
 
 	@CrossOrigin
