@@ -18,40 +18,49 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.br.trackDonation.service.ReceiverService;
 
+import io.swagger.annotations.ApiImplicitParam;
+
 @RestController
 @RequestMapping
 public class ReceiverController {
 
 	@Autowired
 	private ReceiverService receiverService;
-	
+
 	@CrossOrigin
 //	@ApiImplicitParam(name = "file-data", value = "inscrito, para-inscricao, historico", paramType = "formData", dataType = "file", required = false)
+	@ApiImplicitParam(name = "address", value = "address", paramType = "query", dataType = "string", required = false)
 	@PostMapping("receiver/register")
-	public String register(@RequestParam String name, @RequestParam String donation, @RequestParam String family,
+	public String register(@RequestParam String donationReceived, @RequestParam String name,
+			@RequestParam String email, @RequestParam String rg, @RequestParam String dateOfBirth,
+			@RequestParam String phone, @RequestParam String address, @RequestParam String family,
+			@RequestParam Integer residentsQuantity, @RequestParam String monthGotDonation,
 			@RequestPart("file-data") MultipartFile receiverPhoto) throws IOException {
 		receiverPhoto.transferTo(
 				new File("C:\\Users\\kaiqu\\Desktop\\trackDonation\\" + receiverPhoto.getOriginalFilename()));
 
-		return receiverService.registerReceiver(name, donation, family);
+		return receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation);
 	}
-	
+
 	@CrossOrigin
 	@GetMapping("/receiver")
 	public List<Object[]> getAllReceivers() {
 		return receiverService.getAllReceivers();
 	}
-	
+
 	@CrossOrigin
 	@PutMapping("/receiver")
-	public String updateReceiver(@RequestParam Integer id, @RequestParam String name, @RequestParam String donation, @RequestParam String family,
+	public String updateReceiver(@RequestParam Integer id, @RequestParam String donationReceived, @RequestParam String name,
+			@RequestParam String email, @RequestParam String rg, @RequestParam String dateOfBirth,
+			@RequestParam String phone, @RequestParam String address, @RequestParam String family,
+			@RequestParam Integer residentsQuantity, @RequestParam String monthGotDonation,
 			@RequestPart("file-data") MultipartFile receiverPhoto) throws IOException {
-		return receiverService.updateReceiver(id, name, donation, family);
+		return receiverService.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation);
 	}
-	
+
 	@CrossOrigin
 	@DeleteMapping("/receiver")
-	public String deleteReceiver(@RequestParam Integer id){
+	public String deleteReceiver(@RequestParam Integer id) {
 		return receiverService.deleteReceiver(id);
 	}
 }

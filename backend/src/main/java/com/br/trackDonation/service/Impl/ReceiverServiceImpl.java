@@ -17,11 +17,11 @@ public class ReceiverServiceImpl implements ReceiverService {
 	private ReceiverDAO receiverDAO;
 	
 	@Override
-	public String registerReceiver(String name, String donation, String family) throws IOException {
+	public String registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException {
 		FileHelper file = new FileHelper();
-		String photoName = file.verifiedDonationPhoto(donation);
+		String photoName = file.verifiedDonationPhoto(donationReceived);
 		
-		receiverDAO.registerReceiver(name, donation, family, photoName);
+		receiverDAO.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
 		return "Receptor cadastrado com sucesso";
 	}
 	
@@ -31,11 +31,11 @@ public class ReceiverServiceImpl implements ReceiverService {
 	}
 	
 	@Override
-	public String updateReceiver(Integer id, String name, String donation, String family) throws IOException {
+	public String updateReceiver(Integer id, String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException {
 		FileHelper file = new FileHelper();
-		String photoName = file.verifiedDonationPhoto(donation);
+		String photoName = file.verifiedDonationPhoto(donationReceived);
 		
-		receiverDAO.updateReceiver(id, name, donation, family, photoName);
+		receiverDAO.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
 		return "Receptor atualizado com sucesso";
 	}
 	

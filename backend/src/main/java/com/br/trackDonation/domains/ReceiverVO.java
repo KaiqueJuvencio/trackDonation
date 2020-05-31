@@ -40,7 +40,7 @@ public class ReceiverVO {
 	private String family;
 	
 	@Column(name = "QtdMoradores")
-	private String residentsQuantity;
+	private Integer residentsQuantity;
 	
 	@Column(name = "DataCadastro")
 	private String registerDate;
@@ -99,11 +99,11 @@ public class ReceiverVO {
 		this.address = address;
 	}
 
-	public String getResidentsQuantity() {
+	public Integer getResidentsQuantity() {
 		return residentsQuantity;
 	}
 
-	public void setResidentsQuantity(String residentsQuantity) {
+	public void setResidentsQuantity(Integer residentsQuantity) {
 		this.residentsQuantity = residentsQuantity;
 	}
 
@@ -147,13 +147,6 @@ public class ReceiverVO {
 		this.family = family;
 	}
 
-	public String getDoacao() {
-		return donationReceived;
-	}
-
-	public void setDoacao(String donationReceived) {
-		this.donationReceived = donationReceived;
-	}
 
 	public String getRegisterDate() {
 		return registerDate;
