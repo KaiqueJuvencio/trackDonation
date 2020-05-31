@@ -15,19 +15,19 @@ public class DonatorVO {
 	@Column(name = "Id")
 	private Integer id;
 	
+	@Column(name = "Doacao")
+	private String donation;
+	
 	@Column(name = "Nome")
 	private String name;
-	
-	@Column(name = "Telefone")
-	private String phone;
 	
 	@Column(name = "Email")
 	private String email;
 	
-	@Column(name = "Doacao")
-	private String donation;
+	@Column(name = "Telefone")
+	private String phone;
 	
-	@Column(name = "dataCadastro")
+	@Column(name = "DataCadastro")
 	private String registerDate;
 	
 	public Integer getId() {
