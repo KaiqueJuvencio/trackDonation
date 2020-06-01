@@ -19,6 +19,10 @@ export default function RegisterReceiver() {
     const [monthGotDonation, setMonthGotDonation] = useState('');
     const [file, setFile] = useState('');
 
+    const [openRegister, setOpenRegister] = useState('');
+    const [openUpdate, setOpenUpdate] = useState('');
+    const [openDelete, setOpenDelete] = useState('');
+
     const [receivers, setReceiver] = useState([]);
 
     const ReceiversComponent = (note) => {
@@ -63,78 +67,87 @@ export default function RegisterReceiver() {
             )
 
         }
-        return(
+        return (
             <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
         )
     }
 
+    async function handleReceiver() {
+        try {
+            trackDonationApi.get('/receiver').then(res => {
+                setReceiver(res.data);
+            });
+        } catch (err) {
+            alert(err);
+        }
+    }
+
     const ReceiverRegisterComponent = (props) => {
-        return (<div>
-            <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
-            <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
-            <form onSubmit={registerReceiver}>
-                <input
-                    placeholder="Doação"
-                    value={donation}
-                    onChange={e => setDonation(e.target.value)}
-                />
-                <input
-                    placeholder="Nome"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                <input
-                    placeholder="E-mail"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <input
-                    placeholder="RG"
-                    value={rg}
-                    onChange={e => setRg(e.target.value)}
-                />
-                <input
-                    placeholder="Nascimento"
-                    value={dateOfBirth}
-                    onChange={e => setDateOfBirth(e.target.value)}
-                />
-                <input
-                    placeholder="Telefone"
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                />
-                <input
-                    placeholder="Endereço"
-                    value={address}
-                    onChange={e => setAddress(e.target.value)}
-                />
-                <input
-                    placeholder="Família"
-                    value={family}
-                    onChange={e => setFamily(e.target.value)}
-                />
-                <input
-                    placeholder="Qtd. Moradores"
-                    value={residentsQuantity}
-                    onChange={e => setResidentsQuantity(e.target.value)}
-                />
-                <input
-                    placeholder="Meses Cestas Pegas"
-                    value={monthGotDonation}
-                    onChange={e => setMonthGotDonation(e.target.value)}
-                />
+        if (openRegister == true) {
+            return (<div>
+                <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
+                <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
+                <form onSubmit={registerReceiver}>
+                    <input
+                        placeholder="Doação"
+                        value={donation}
+                        onChange={e => setDonation(e.target.value)}
+                    />
+                    <input
+                        placeholder="Nome"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                    <input
+                        placeholder="E-mail"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <input
+                        placeholder="RG"
+                        value={rg}
+                        onChange={e => setRg(e.target.value)}
+                    />
+                    <input
+                        placeholder="Nascimento"
+                        value={dateOfBirth}
+                        onChange={e => setDateOfBirth(e.target.value)}
+                    />
+                    <input
+                        placeholder="Telefone"
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
+                    />
+                    <input
+                        placeholder="Endereço"
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
+                    />
+                    <input
+                        placeholder="Família"
+                        value={family}
+                        onChange={e => setFamily(e.target.value)}
+                    />
+                    <input
+                        placeholder="Qtd. Moradores"
+                        value={residentsQuantity}
+                        onChange={e => setResidentsQuantity(e.target.value)}
+                    />
+                    <input
+                        placeholder="Meses Cestas Pegas"
+                        value={monthGotDonation}
+                        onChange={e => setMonthGotDonation(e.target.value)}
+                    />
 
-                <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
-                <button className="button" type="submit">Cadastrar</button>
-            </form>
-        </div>
-
-        )
+                    <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
+                    <button className="button-intern" type="submit">Enviar</button>
+                    <button className="button-intern" onClick={e => setOpenRegister(false)} type="button">Fechar</button>
+                </form>
+            </div>
+            )
+        } else { return (<button className="button" onClick={e => setOpenRegister(true)} type="button">Cadastrar Receptor</button>) }
     }
 
-    function teste() {
-        return (<ReceiverRegisterComponent />)
-    }
 
     async function registerReceiver() {
         console.log(address, dateOfBirth, donation, email, family, monthGotDonation, name, phone, residentsQuantity, rg);
@@ -154,69 +167,10 @@ export default function RegisterReceiver() {
         }
     }
 
-    async function updateReceiver() {
-
-        const data = new FormData()
-        data.append('receiverPhoto', file.selectedFile)
-        if (donation === '' || family === '' || name === '') {
-            alert("Insira as informações necessárias para cadastro!");
-        } else {
-            try {
-                await trackDonationApi.put('/receiver?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&id=' + id + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
-                    console.log(res.statusText)
-                })
-                alert("Cadastro realizado com sucesso!")
-            } catch (err) {
-                alert(err);
-            }
-        }
-    }
-
-    async function deleteReceiver() {
-
-        const data = new FormData()
-        data.append('receiverPhoto', file.selectedFile)
-        if (id === '') {
-            alert("Insira as informações necessárias para cadastro!");
-        } else {
-            try {
-                await trackDonationApi.delete('/receiver?id=' + id).then(res => {
-                    console.log(res.statusText)
-                })
-                alert("Cadastro realizado com sucesso!")
-            } catch (err) {
-                alert(err);
-            }
-        }
-    }
-
-    async function handleReceiver() {
-        try {
-            trackDonationApi.get('/receiver').then(res => {
-                setReceiver(res.data);
-            });
-        } catch (err) {
-            alert(err);
-        }
-    }
-
-    function onChangeHandler(event) {
-
-        console.log(event.target.files[0])
-
-    }
-    return (
-        <div className="symptoms-container">
-            <div className="content">
-                <section>
-                    <div className="compass-logo">
-                        <img src={compass} className="App-logo" alt="compass" />
-                        <h2 className="compass-text">Track Donation IRES</h2>
-                    </div>
-
-
-
-
+    const ReceiverUpdateComponent = (props) => {
+        if (openUpdate == true) {
+            return (
+                <div>
                     <h1><FiCheckSquare color="#E02041" />Atualizar Receptor</h1>
                     <p className="check-in-descricao">Preencha os campos para fazer a atualização de um Receptor.</p>
                     <form onSubmit={updateReceiver}>
@@ -276,10 +230,38 @@ export default function RegisterReceiver() {
                             onChange={e => setMonthGotDonation(e.target.value)}
                         />
                         <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
-                        <button className="button" type="submit">Atualizar</button>
+                        <button className="button-intern" type="submit">Enviar</button>
+                        <button className="button-intern" onClick={e => setOpenUpdate(false)} type="button">Fechar</button>
                     </form>
+                </div>
+            )
+        } else {
+            return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>)
+        }
+    }
 
+    async function updateReceiver() {
 
+        const data = new FormData()
+        data.append('receiverPhoto', file.selectedFile)
+        if (donation === '' || family === '' || name === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.put('/receiver?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&id=' + id + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
+                    console.log(res.statusText)
+                })
+                alert("Cadastro realizado com sucesso!")
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
+    const ReceiverDeleteComponent = (props) => {
+        if (openDelete == true) {
+            return (
+                <div>
                     <h1><FiCheckSquare color="#E02041" />Excluir Receptor</h1>
                     <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
                     <form onSubmit={deleteReceiver}>
@@ -288,22 +270,52 @@ export default function RegisterReceiver() {
                             value={id}
                             onChange={e => setId(e.target.value)}
                         />
-                        <button className="button" type="submit">Excluir</button>
+                        <button className="button-intern" type="submit">Enviar</button>
+                        <button className="button-intern" onClick={e => setOpenDelete(false)} type="button">Fechar</button>
                     </form>
+                </div>
+            )
+        }
+        else {
+            return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Receptor</button>)
+        }
+    }
 
+    async function deleteReceiver() {
+
+        const data = new FormData()
+        data.append('receiverPhoto', file.selectedFile)
+        if (id === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.delete('/receiver?id=' + id).then(res => {
+                    console.log(res.statusText)
+                })
+                alert("Cadastro realizado com sucesso!")
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
+    return (
+        <div className="symptoms-container">
+            <div className="content">
+                <section>
+                    <div className="compass-logo">
+                        <img src={compass} className="App-logo" alt="compass" />
+                        <h2 className="compass-text">Track Donation IRES</h2>
+                    </div>
                     <Link className="back-link" to="/">
                         <FiArrowLeft size={16} color="#E02041" />
                         Voltar
                     </Link>
-
-                    
+                    <ReceiverRegisterComponent />
+                    <ReceiverUpdateComponent />
+                    <ReceiverDeleteComponent />
                     <ReceiversComponent />
-
-                    <button className="button" onClick={teste} type="button">Cadastrar Receptor</button>
-
-
                 </section>
-
             </div>
         </div>
     )
