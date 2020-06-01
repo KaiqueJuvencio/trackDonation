@@ -22,45 +22,118 @@ export default function RegisterReceiver() {
     const [receivers, setReceiver] = useState([]);
 
     const ReceiversComponent = (note) => {
-        return (
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Doação</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>RG</th>
-                    <th>Nascimento</th>
-                    <th>Telefone</th>
-                    <th>Endereço</th>
-                    <th>Família</th>
-                    <th>Qtd. Moradores</th>
-                    <th>Meses Cestas Pegas</th>
-                    <th>Data Cadastro</th>
-                    <th>Foto</th>
-
-
-                </tr>
-                {receivers.map(receiver => (
+        if (receivers.length != 0) {
+            return (
+                <table>
                     <tr>
-                        <td>{receiver[0]}</td>
-                        <td>{receiver[1]}</td>
-                        <td>{receiver[2]}</td>
-                        <td>{receiver[3]}</td>
-                        <td>{receiver[4]}</td>
-                        <td>{receiver[5]}</td>
-                        <td>{receiver[6]}</td>
-                        <td>{receiver[7]}</td>
-                        <td>{receiver[8]}</td>
-                        <td>{receiver[9]}</td>
-                        <td>{receiver[10]}</td>
-                        <td>{receiver[11]}</td>
-                        <td>{receiver[12]}</td>
+                        <th>Id</th>
+                        <th>Doação</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>RG</th>
+                        <th>Nascimento</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>Família</th>
+                        <th>Qtd. Moradores</th>
+                        <th>Meses Cestas Pegas</th>
+                        <th>Data Cadastro</th>
+                        <th>Foto</th>
+
+
                     </tr>
-                ))}
-            </table>
+                    {receivers.map(receiver => (
+                        <tr>
+                            <td>{receiver[0]}</td>
+                            <td>{receiver[1]}</td>
+                            <td>{receiver[2]}</td>
+                            <td>{receiver[3]}</td>
+                            <td>{receiver[4]}</td>
+                            <td>{receiver[5]}</td>
+                            <td>{receiver[6]}</td>
+                            <td>{receiver[7]}</td>
+                            <td>{receiver[8]}</td>
+                            <td>{receiver[9]}</td>
+                            <td>{receiver[10]}</td>
+                            <td>{receiver[11]}</td>
+                            <td>{receiver[12]}</td>
+                        </tr>
+                    ))}
+                </table>
+            )
+
+        }
+        return(
+            <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
+        )
+    }
+
+    const ReceiverRegisterComponent = (props) => {
+        return (<div>
+            <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
+            <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
+            <form onSubmit={registerReceiver}>
+                <input
+                    placeholder="Doação"
+                    value={donation}
+                    onChange={e => setDonation(e.target.value)}
+                />
+                <input
+                    placeholder="Nome"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+                <input
+                    placeholder="E-mail"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+                <input
+                    placeholder="RG"
+                    value={rg}
+                    onChange={e => setRg(e.target.value)}
+                />
+                <input
+                    placeholder="Nascimento"
+                    value={dateOfBirth}
+                    onChange={e => setDateOfBirth(e.target.value)}
+                />
+                <input
+                    placeholder="Telefone"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                />
+                <input
+                    placeholder="Endereço"
+                    value={address}
+                    onChange={e => setAddress(e.target.value)}
+                />
+                <input
+                    placeholder="Família"
+                    value={family}
+                    onChange={e => setFamily(e.target.value)}
+                />
+                <input
+                    placeholder="Qtd. Moradores"
+                    value={residentsQuantity}
+                    onChange={e => setResidentsQuantity(e.target.value)}
+                />
+                <input
+                    placeholder="Meses Cestas Pegas"
+                    value={monthGotDonation}
+                    onChange={e => setMonthGotDonation(e.target.value)}
+                />
+
+                <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
+                <button className="button" type="submit">Cadastrar</button>
+            </form>
+        </div>
 
         )
+    }
+
+    function teste() {
+        return (<ReceiverRegisterComponent />)
     }
 
     async function registerReceiver() {
@@ -141,63 +214,7 @@ export default function RegisterReceiver() {
                         <h2 className="compass-text">Track Donation IRES</h2>
                     </div>
 
-                    <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
-                    <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
-                    <form onSubmit={registerReceiver}>
-                        <input
-                            placeholder="Doação"
-                            value={donation}
-                            onChange={e => setDonation(e.target.value)}
-                        />
-                        <input
-                            placeholder="Nome"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                        <input
-                            placeholder="E-mail"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <input
-                            placeholder="RG"
-                            value={rg}
-                            onChange={e => setRg(e.target.value)}
-                        />
-                        <input
-                            placeholder="Nascimento"
-                            value={dateOfBirth}
-                            onChange={e => setDateOfBirth(e.target.value)}
-                        />
-                        <input
-                            placeholder="Telefone"
-                            value={phone}
-                            onChange={e => setPhone(e.target.value)}
-                        />
-                        <input
-                            placeholder="Endereço"
-                            value={address}
-                            onChange={e => setAddress(e.target.value)}
-                        />
-                        <input
-                            placeholder="Família"
-                            value={family}
-                            onChange={e => setFamily(e.target.value)}
-                        />
-                        <input
-                            placeholder="Qtd. Moradores"
-                            value={residentsQuantity}
-                            onChange={e => setResidentsQuantity(e.target.value)}
-                        />
-                        <input
-                            placeholder="Meses Cestas Pegas"
-                            value={monthGotDonation}
-                            onChange={e => setMonthGotDonation(e.target.value)}
-                        />
-                        
-                        <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
-                        <button className="button" type="submit">Cadastrar</button>
-                    </form>
+
 
 
                     <h1><FiCheckSquare color="#E02041" />Atualizar Receptor</h1>
@@ -208,7 +225,7 @@ export default function RegisterReceiver() {
                             value={id}
                             onChange={e => setId(e.target.value)}
                         />
-                         <input
+                        <input
                             placeholder="Doação"
                             value={donation}
                             onChange={e => setDonation(e.target.value)}
@@ -279,8 +296,11 @@ export default function RegisterReceiver() {
                         Voltar
                     </Link>
 
-                    <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
+                    
                     <ReceiversComponent />
+
+                    <button className="button" onClick={teste} type="button">Cadastrar Receptor</button>
+
 
                 </section>
 
