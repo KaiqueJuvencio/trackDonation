@@ -43,8 +43,6 @@ export default function RegisterReceiver() {
                         <th>Meses Cestas Pegas</th>
                         <th>Data Cadastro</th>
                         <th>Foto</th>
-
-
                     </tr>
                     {receivers.map(receiver => (
                         <tr>
@@ -65,11 +63,8 @@ export default function RegisterReceiver() {
                     ))}
                 </table>
             )
-
         }
-        return (
-            <button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>
-        )
+        return (<button className="button" onClick={handleReceiver} type="button">Listar Receptores</button>)
     }
 
     async function handleReceiver() {
@@ -81,73 +76,6 @@ export default function RegisterReceiver() {
             alert(err);
         }
     }
-
-    const ReceiverRegisterComponent = (props) => {
-        if (openRegister == true) {
-            return (<div>
-                <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
-                <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
-                <form onSubmit={registerReceiver}>
-                    <input
-                        placeholder="Doação"
-                        value={donation}
-                        onChange={e => setDonation(e.target.value)}
-                    />
-                    <input
-                        placeholder="Nome"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                    />
-                    <input
-                        placeholder="E-mail"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                    <input
-                        placeholder="RG"
-                        value={rg}
-                        onChange={e => setRg(e.target.value)}
-                    />
-                    <input
-                        placeholder="Nascimento"
-                        value={dateOfBirth}
-                        onChange={e => setDateOfBirth(e.target.value)}
-                    />
-                    <input
-                        placeholder="Telefone"
-                        value={phone}
-                        onChange={e => setPhone(e.target.value)}
-                    />
-                    <input
-                        placeholder="Endereço"
-                        value={address}
-                        onChange={e => setAddress(e.target.value)}
-                    />
-                    <input
-                        placeholder="Família"
-                        value={family}
-                        onChange={e => setFamily(e.target.value)}
-                    />
-                    <input
-                        placeholder="Qtd. Moradores"
-                        value={residentsQuantity}
-                        onChange={e => setResidentsQuantity(e.target.value)}
-                    />
-                    <input
-                        placeholder="Meses Cestas Pegas"
-                        value={monthGotDonation}
-                        onChange={e => setMonthGotDonation(e.target.value)}
-                    />
-
-                    <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
-                    <button className="button-intern" type="submit">Enviar</button>
-                    <button className="button-intern" onClick={e => setOpenRegister(false)} type="button">Fechar</button>
-                </form>
-            </div>
-            )
-        } else { return (<button className="button" onClick={e => setOpenRegister(true)} type="button">Cadastrar Receptor</button>) }
-    }
-
 
     async function registerReceiver() {
         console.log(address, dateOfBirth, donation, email, family, monthGotDonation, name, phone, residentsQuantity, rg);
@@ -167,79 +95,6 @@ export default function RegisterReceiver() {
         }
     }
 
-    const ReceiverUpdateComponent = (props) => {
-        if (openUpdate == true) {
-            return (
-                <div>
-                    <h1><FiCheckSquare color="#E02041" />Atualizar Receptor</h1>
-                    <p className="check-in-descricao">Preencha os campos para fazer a atualização de um Receptor.</p>
-                    <form onSubmit={updateReceiver}>
-                        <input
-                            placeholder="Id"
-                            value={id}
-                            onChange={e => setId(e.target.value)}
-                        />
-                        <input
-                            placeholder="Doação"
-                            value={donation}
-                            onChange={e => setDonation(e.target.value)}
-                        />
-                        <input
-                            placeholder="Nome"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                        <input
-                            placeholder="E-mail"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <input
-                            placeholder="RG"
-                            value={rg}
-                            onChange={e => setRg(e.target.value)}
-                        />
-                        <input
-                            placeholder="Nascimento"
-                            value={dateOfBirth}
-                            onChange={e => setDateOfBirth(e.target.value)}
-                        />
-                        <input
-                            placeholder="Telefone"
-                            value={phone}
-                            onChange={e => setPhone(e.target.value)}
-                        />
-                        <input
-                            placeholder="Endereço"
-                            value={address}
-                            onChange={e => setAddress(e.target.value)}
-                        />
-                        <input
-                            placeholder="Família"
-                            value={family}
-                            onChange={e => setFamily(e.target.value)}
-                        />
-                        <input
-                            placeholder="Qtd. Moradores"
-                            value={residentsQuantity}
-                            onChange={e => setResidentsQuantity(e.target.value)}
-                        />
-                        <input
-                            placeholder="Meses Cestas Pegas"
-                            value={monthGotDonation}
-                            onChange={e => setMonthGotDonation(e.target.value)}
-                        />
-                        <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
-                        <button className="button-intern" type="submit">Enviar</button>
-                        <button className="button-intern" onClick={e => setOpenUpdate(false)} type="button">Fechar</button>
-                    </form>
-                </div>
-            )
-        } else {
-            return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>)
-        }
-    }
-
     async function updateReceiver() {
 
         const data = new FormData()
@@ -255,29 +110,6 @@ export default function RegisterReceiver() {
             } catch (err) {
                 alert(err);
             }
-        }
-    }
-
-    const ReceiverDeleteComponent = (props) => {
-        if (openDelete == true) {
-            return (
-                <div>
-                    <h1><FiCheckSquare color="#E02041" />Excluir Receptor</h1>
-                    <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
-                    <form onSubmit={deleteReceiver}>
-                        <input
-                            placeholder="Id"
-                            value={id}
-                            onChange={e => setId(e.target.value)}
-                        />
-                        <button className="button-intern" type="submit">Enviar</button>
-                        <button className="button-intern" onClick={e => setOpenDelete(false)} type="button">Fechar</button>
-                    </form>
-                </div>
-            )
-        }
-        else {
-            return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Receptor</button>)
         }
     }
 
@@ -311,9 +143,165 @@ export default function RegisterReceiver() {
                         <FiArrowLeft size={16} color="#E02041" />
                         Voltar
                     </Link>
-                    <ReceiverRegisterComponent />
-                    <ReceiverUpdateComponent />
-                    <ReceiverDeleteComponent />
+
+                    {(function(){
+                        if (openRegister == true) {
+                            return (<div>
+                                <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
+                                <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
+                                <form onSubmit={registerReceiver}>
+                                    <input
+                                        placeholder="Doação"
+                                        value={donation}
+                                        onChange={e => setDonation(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Nome"
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="E-mail"
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="RG"
+                                        value={rg}
+                                        onChange={e => setRg(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Nascimento"
+                                        value={dateOfBirth}
+                                        onChange={e => setDateOfBirth(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Telefone"
+                                        value={phone}
+                                        onChange={e => setPhone(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Endereço"
+                                        value={address}
+                                        onChange={e => setAddress(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Família"
+                                        value={family}
+                                        onChange={e => setFamily(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Qtd. Moradores"
+                                        value={residentsQuantity}
+                                        onChange={e => setResidentsQuantity(e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="Meses Cestas Pegas"
+                                        value={monthGotDonation}
+                                        onChange={e => setMonthGotDonation(e.target.value)}
+                                    />
+                
+                                    <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
+                                    <button className="button-intern" type="submit">Enviar</button>
+                                    <button className="button-intern" onClick={e => setOpenRegister(false)} type="button">Fechar</button>
+                                </form>
+                            </div>
+                            )
+                        } else { return (<button className="button" onClick={e => setOpenRegister(true)} type="button">Cadastrar Receptor</button>) }
+                    })()}
+
+                    {(function(){
+                        if (openUpdate == true) {
+                            return (
+                                <div>
+                                    <h1><FiCheckSquare color="#E02041" />Atualizar Receptor</h1>
+                                    <p className="check-in-descricao">Preencha os campos para fazer a atualização de um Receptor.</p>
+                                    <form onSubmit={updateReceiver}>
+                                        <input
+                                            placeholder="Id"
+                                            value={id}
+                                            onChange={e => setId(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Doação"
+                                            value={donation}
+                                            onChange={e => setDonation(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Nome"
+                                            value={name}
+                                            onChange={e => setName(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="E-mail"
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="RG"
+                                            value={rg}
+                                            onChange={e => setRg(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Nascimento"
+                                            value={dateOfBirth}
+                                            onChange={e => setDateOfBirth(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Telefone"
+                                            value={phone}
+                                            onChange={e => setPhone(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Endereço"
+                                            value={address}
+                                            onChange={e => setAddress(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Família"
+                                            value={family}
+                                            onChange={e => setFamily(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Qtd. Moradores"
+                                            value={residentsQuantity}
+                                            onChange={e => setResidentsQuantity(e.target.value)}
+                                        />
+                                        <input
+                                            placeholder="Meses Cestas Pegas"
+                                            value={monthGotDonation}
+                                            onChange={e => setMonthGotDonation(e.target.value)}
+                                        />
+                                        <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
+                                        <button className="button-intern" type="submit">Enviar</button>
+                                        <button className="button-intern" onClick={e => setOpenUpdate(false)} type="button">Fechar</button>
+                                    </form>
+                                </div>
+                            )
+                        } else {return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>)}
+                    })()}
+
+                    {(function(){
+                        if (openDelete == true) {
+                            return (
+                                <div>
+                                    <h1><FiCheckSquare color="#E02041" />Excluir Receptor</h1>
+                                    <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
+                                    <form onSubmit={deleteReceiver}>
+                                        <input
+                                            placeholder="Id"
+                                            value={id}
+                                            onChange={e => setId(e.target.value)}
+                                        />
+                                        <button className="button-intern" type="submit">Enviar</button>
+                                        <button className="button-intern" onClick={e => setOpenDelete(false)} type="button">Fechar</button>
+                                    </form>
+                                </div>
+                            )
+                        }
+                        else {return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Receptor</button>)}
+                    })()}
+
                     <ReceiversComponent />
                 </section>
             </div>
