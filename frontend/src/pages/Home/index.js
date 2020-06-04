@@ -17,13 +17,10 @@ export default class Home extends Component {
                         <h1>Bem-Vindo ao Track Donation IRES</h1>
 
                         <Link className="button" to="/register-receiver">
-                            Cadastrar Receptor
+                            Funções Receptor
                     </Link>
                         <Link className="button" to="/register-donator">
-                            Cadastrar Doador
-                    </Link>
-                        <Link className="button" to="/transmission">
-                            Transmissão
+                            Funções Doador
                     </Link>
                     </form>
                 </section>

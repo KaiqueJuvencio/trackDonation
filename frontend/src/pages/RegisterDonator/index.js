@@ -17,6 +17,7 @@ export default function RegisterDonator() {
     const [openRegister, setOpenRegister] = useState('');
     const [openUpdate, setOpenUpdate] = useState('');
     const [openDelete, setOpenDelete] = useState('');
+    const [openSendFeedback, setOpenSendFeedback] = useState('');
 
     const [receivers, setReceiver] = useState([]);
 
@@ -56,7 +57,7 @@ export default function RegisterDonator() {
             alert(err);
         }
     }
-    
+
     async function registerDonator() {
         if (donation === '' || email === '' || name === '') {
             alert("Insira as informações necessárias para cadastro!");
@@ -94,6 +95,18 @@ export default function RegisterDonator() {
         }
     }
 
+    async function sendFeedbackDonator() {
+        if (donation === '') {
+            alert("Insira as informações necessárias para cadastro!");
+        } else {
+            try {
+                await trackDonationApi.post('/track-donation?donation=' + donation)
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
+
     return (
         <div className="register-donator-container">
             <div className="content">
@@ -107,18 +120,18 @@ export default function RegisterDonator() {
                     Voltar
                     </Link>
 
-                    {(function(){
+                    {(function () {
                         if (openRegister == true) {
                             return (
                                 <div>
                                     <h1>Cadastrar Doador</h1>
                                     <p>Preencha os campos para cadastrar um Doador.</p>
-                
+
                                     <form onSubmit={registerDonator}>
                                         <input
                                             placeholder="Doação"
                                             value={donationTest}
-                                            onChange={e => {setDonationTest(e.target.value)}}
+                                            onChange={e => { setDonationTest(e.target.value) }}
                                         />
                                         <input
                                             placeholder="E-mail"
@@ -146,7 +159,7 @@ export default function RegisterDonator() {
                         }
                     })()}
 
-                    {(function(){
+                    {(function () {
                         if (openUpdate == true) {
                             return (
                                 <div>
@@ -186,8 +199,8 @@ export default function RegisterDonator() {
                         } else { return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Alterar Doador</button>) }
                     })()}
 
-                    {(function(){
-                         if(openDelete == true){
+                    {(function () {
+                        if (openDelete == true) {
                             return (
                                 <div>
                                     <h1>Excluir Doador</h1>
@@ -203,10 +216,30 @@ export default function RegisterDonator() {
                                     </form>
                                 </div>
                             )
-                            }else{return(<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Doador</button>)}
+                        } else { return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Doador</button>) }
                     })()}
 
-                    <ReceiversComponent/>
+                    {(function () {
+                        if (openSendFeedback == true) {
+                            return (
+                                <div>
+                                    <h1>Enviar Feedback para Doador</h1>
+                                    <p>Informe o Nº da Doação para que seja enviado um e-mail com feedback para quem fez essa doação.</p>
+                                    <form onSubmit={sendFeedbackDonator}>
+                                        <input
+                                            placeholder="Nº Doação"
+                                            value={donation}
+                                            onChange={e => setDonation(e.target.value)}
+                                        />
+                                        <button className="button-intern" type="submit">Enviar</button>
+                                        <button className="button-intern" onClick={e => setOpenSendFeedback(false)} type="button">Fechar</button>
+                                    </form>
+                                </div>
+                            )
+                        } else { return (<button className="button" onClick={e => setOpenSendFeedback(true)} type="button">Enviar Feedback</button>) }
+                    })()}
+
+                    <ReceiversComponent />
                 </section>
             </div>
         </div>

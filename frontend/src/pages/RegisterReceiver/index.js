@@ -88,7 +88,7 @@ export default function RegisterReceiver() {
                 await trackDonationApi.post('/receiver/register?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
                     console.log(res.statusText)
                 })
-                alert("Cadastro realizado com sucesso!")
+                alert("Cadastro realizado com sucesso!");
             } catch (err) {
                 alert(err);
             }
@@ -106,7 +106,7 @@ export default function RegisterReceiver() {
                 await trackDonationApi.put('/receiver?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&id=' + id + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
                     console.log(res.statusText)
                 })
-                alert("Cadastro realizado com sucesso!")
+                alert("Atualização realizada com sucesso!")
             } catch (err) {
                 alert(err);
             }
@@ -124,7 +124,7 @@ export default function RegisterReceiver() {
                 await trackDonationApi.delete('/receiver?id=' + id).then(res => {
                     console.log(res.statusText)
                 })
-                alert("Cadastro realizado com sucesso!")
+                alert("Exclusão realizada com sucesso!")
             } catch (err) {
                 alert(err);
             }
