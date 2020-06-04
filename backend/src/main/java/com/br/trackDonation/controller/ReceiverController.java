@@ -36,8 +36,10 @@ public class ReceiverController {
 			@RequestParam(required=false) String address, @RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity,
 			@RequestParam(required=false) String monthGotDonation, @RequestPart(required=false) MultipartFile receiverPhoto)
 			throws IOException {
+		if(receiverPhoto!=null) {
 		receiverPhoto.transferTo(
 				new File("C:\\Users\\kaiqu\\Desktop\\trackDonation\\" + receiverPhoto.getOriginalFilename()));
+		}
 
 		return receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family,
 				residentsQuantity, monthGotDonation);
