@@ -81,8 +81,8 @@ export default function RegisterReceiver() {
         console.log(address, dateOfBirth, donation, email, family, monthGotDonation, name, phone, residentsQuantity, rg);
         const data = new FormData()
         data.append('receiverPhoto', file.selectedFile)
-        if (donation === '' || family === '' || name === '') {
-            alert("Insira as informações necessárias para cadastro!");
+        if (name === '') {
+            alert("Nome é necessario. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.post('/receiver/register?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
@@ -99,8 +99,8 @@ export default function RegisterReceiver() {
 
         const data = new FormData()
         data.append('receiverPhoto', file.selectedFile)
-        if (donation === '' || family === '' || name === '') {
-            alert("Insira as informações necessárias para cadastro!");
+        if (id === '' || name === '') {
+            alert("Id e Nome são necessários. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.put('/receiver?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&id=' + id + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
@@ -118,7 +118,7 @@ export default function RegisterReceiver() {
         const data = new FormData()
         data.append('receiverPhoto', file.selectedFile)
         if (id === '') {
-            alert("Insira as informações necessárias para cadastro!");
+            alert("Id é necessário. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.delete('/receiver?id=' + id).then(res => {
@@ -144,7 +144,7 @@ export default function RegisterReceiver() {
                         Voltar
                     </Link>
 
-                    {(function(){
+                    {(function () {
                         if (openRegister == true) {
                             return (<div>
                                 <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
@@ -200,7 +200,7 @@ export default function RegisterReceiver() {
                                         value={monthGotDonation}
                                         onChange={e => setMonthGotDonation(e.target.value)}
                                     />
-                
+
                                     <input type="file" name="file" onChange={e => setFile({ selectedFile: e.target.files[0], loaded: 0, })} />
                                     <button className="button-intern" type="submit">Enviar</button>
                                     <button className="button-intern" onClick={e => setOpenRegister(false)} type="button">Fechar</button>
@@ -210,7 +210,7 @@ export default function RegisterReceiver() {
                         } else { return (<button className="button" onClick={e => setOpenRegister(true)} type="button">Cadastrar Receptor</button>) }
                     })()}
 
-                    {(function(){
+                    {(function () {
                         if (openUpdate == true) {
                             return (
                                 <div>
@@ -218,56 +218,67 @@ export default function RegisterReceiver() {
                                     <p className="check-in-descricao">Preencha os campos para fazer a atualização de um Receptor.</p>
                                     <form onSubmit={updateReceiver}>
                                         <input
+
                                             placeholder="Id"
                                             value={id}
                                             onChange={e => setId(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Doação"
                                             value={donation}
                                             onChange={e => setDonation(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Nome"
                                             value={name}
                                             onChange={e => setName(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="E-mail"
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="RG"
                                             value={rg}
                                             onChange={e => setRg(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Nascimento"
                                             value={dateOfBirth}
                                             onChange={e => setDateOfBirth(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Telefone"
                                             value={phone}
                                             onChange={e => setPhone(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Endereço"
                                             value={address}
                                             onChange={e => setAddress(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Família"
                                             value={family}
                                             onChange={e => setFamily(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Qtd. Moradores"
                                             value={residentsQuantity}
                                             onChange={e => setResidentsQuantity(e.target.value)}
                                         />
                                         <input
+
                                             placeholder="Meses Cestas Pegas"
                                             value={monthGotDonation}
                                             onChange={e => setMonthGotDonation(e.target.value)}
@@ -278,10 +289,10 @@ export default function RegisterReceiver() {
                                     </form>
                                 </div>
                             )
-                        } else {return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>)}
+                        } else { return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>) }
                     })()}
 
-                    {(function(){
+                    {(function () {
                         if (openDelete == true) {
                             return (
                                 <div>
@@ -289,6 +300,7 @@ export default function RegisterReceiver() {
                                     <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
                                     <form onSubmit={deleteReceiver}>
                                         <input
+
                                             placeholder="Id"
                                             value={id}
                                             onChange={e => setId(e.target.value)}
@@ -299,7 +311,7 @@ export default function RegisterReceiver() {
                                 </div>
                             )
                         }
-                        else {return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Receptor</button>)}
+                        else { return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Receptor</button>) }
                     })()}
 
                     <ReceiversComponent />

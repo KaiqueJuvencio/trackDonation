@@ -4,7 +4,11 @@ import './styles.css';
 import compass from '../../assets/compass.png'
 
 export default class Home extends Component {
-    
+    logout(params) {
+        
+        localStorage.setItem('auth','false');
+    }
+
     render() {
         return (
             <div className="home-container">
@@ -22,6 +26,8 @@ export default class Home extends Component {
                         <Link className="button" to="/register-donator">
                             Funções Doador
                     </Link>
+
+                    <button className="button" onClick={this.logout}>Sair</button>
                     </form>
                 </section>
                 <div className="table-container-info">              

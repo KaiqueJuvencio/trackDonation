@@ -50,7 +50,7 @@ export default function RegisterDonator() {
 
     async function handleReceiver() {
         try {
-            trackDonationApi.get('/donator').then(res => {
+            await trackDonationApi.get('/donator').then(res => {
                 setReceiver(res.data);
             });
         } catch (err) {
@@ -148,7 +148,7 @@ export default function RegisterDonator() {
                                             value={phone}
                                             onChange={e => setPhone(e.target.value)}
                                         />
-                                        <button className="button-intern" type="submit">Cadastrar</button>
+                                        <button className="button-intern" type="submit">Enviar</button>
                                         <button className="button-intern" onClick={e => setOpenRegister(false)} type="button">Fechar</button>
                                     </form>
                                 </div>
@@ -207,6 +207,7 @@ export default function RegisterDonator() {
                                     <p>Informe o Id do Doador que deseja excluir.</p>
                                     <form onSubmit={deleteDonator}>
                                         <input
+                                            className="input-style-large"
                                             placeholder="Id"
                                             value={id}
                                             onChange={e => setId(e.target.value)}
