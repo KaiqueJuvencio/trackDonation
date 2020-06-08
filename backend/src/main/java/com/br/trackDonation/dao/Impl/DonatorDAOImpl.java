@@ -47,7 +47,7 @@ public class DonatorDAOImpl implements DonatorDAO {
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
         
-        Query query = manager.createNativeQuery("select D.Id, D.doacao, D.Nome as D_NOME, D.Email, D.Telefone, D.dataCadastro from Donator as D");
+        Query query = manager.createNativeQuery("select D.Id, D.doacao, D.Nome as D_NOME, D.Email, D.Telefone, D.dataCadastro from Donator as D ORDER BY D_NOME ASC");
    
         List<Object[]> result = query.getResultList();
         
