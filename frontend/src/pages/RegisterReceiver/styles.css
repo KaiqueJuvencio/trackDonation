@@ -177,7 +177,7 @@
   
   /* When the checkbox is checked, add a blue background */
   .symptoms-container .content .check .check-input .container input:checked ~ .checkmark {
-    background-color: #E02041;
+    background-color: #00b670;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */

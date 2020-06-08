@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckSquare, FiRefreshCw, FiTrash2, FiMail} from 'react-icons/fi';
 import './styles.css';
 import compass from '../../assets/compass.png'
 
@@ -116,7 +116,7 @@ export default function RegisterDonator() {
                         <h2 className="compass-text">Track Donation IRES</h2>
                     </div>
                     <Link className="back-link" to="/">
-                        <FiArrowLeft size={16} color="#E02041" />
+                        <FiArrowLeft size={16} color="#00b670" />
                     Voltar
                     </Link>
 
@@ -124,7 +124,7 @@ export default function RegisterDonator() {
                         if (openRegister == true) {
                             return (
                                 <div>
-                                    <h1>Cadastrar Doador</h1>
+                                    <h1><FiCheckSquare color="#00b670" />Cadastrar Doador</h1>
                                     <p>Preencha os campos para cadastrar um Doador.</p>
 
                                     <form onSubmit={registerDonator}>
@@ -163,7 +163,7 @@ export default function RegisterDonator() {
                         if (openUpdate == true) {
                             return (
                                 <div>
-                                    <h1>Alterar Doador</h1>
+                                    <h1><FiRefreshCw color="#00b670" />Alterar Doador</h1>
                                     <p>Preencha os campos para fazer a atualização de um Doador.</p>
                                     <form onSubmit={updateDonator}>
                                         <input
@@ -203,7 +203,7 @@ export default function RegisterDonator() {
                         if (openDelete == true) {
                             return (
                                 <div>
-                                    <h1>Excluir Doador</h1>
+                                    <h1><FiTrash2 color="#00b670" />Excluir Doador</h1>
                                     <p>Informe o Id do Doador que deseja excluir.</p>
                                     <form onSubmit={deleteDonator}>
                                         <input
@@ -224,7 +224,7 @@ export default function RegisterDonator() {
                         if (openSendFeedback == true) {
                             return (
                                 <div>
-                                    <h1>Enviar Feedback para Doador</h1>
+                                    <h1><FiMail color="#00b670" />Enviar Feedback para Doador</h1>
                                     <p>Informe o Nº da Doação para que seja enviado um e-mail com feedback para quem fez essa doação.</p>
                                     <form onSubmit={sendFeedbackDonator}>
                                         <input

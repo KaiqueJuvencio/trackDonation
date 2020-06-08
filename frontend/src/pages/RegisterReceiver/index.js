@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowLeft, FiCheckSquare } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckSquare, FiRefreshCw, FiTrash2 } from 'react-icons/fi';
 import "./styles.css";
 import compass from '../../assets/compass.png'
 import trackDonationApi from '../../services/trackDonationApi';
@@ -140,14 +140,14 @@ export default function RegisterReceiver() {
                         <h2 className="compass-text">Track Donation IRES</h2>
                     </div>
                     <Link className="back-link" to="/">
-                        <FiArrowLeft size={16} color="#E02041" />
+                        <FiArrowLeft size={16} color="#00b670" />
                         Voltar
                     </Link>
 
                     {(function () {
                         if (openRegister == true) {
                             return (<div>
-                                <h1><FiCheckSquare color="#E02041" />Cadastrar Receptor</h1>
+                                <h1><FiCheckSquare color="#00b670" />Cadastrar Receptor</h1>
                                 <p className="check-in-descricao">Preencha os campos para cadastrar um Receptor.</p>
                                 <form onSubmit={registerReceiver}>
                                     <input
@@ -214,7 +214,7 @@ export default function RegisterReceiver() {
                         if (openUpdate == true) {
                             return (
                                 <div>
-                                    <h1><FiCheckSquare color="#E02041" />Atualizar Receptor</h1>
+                                    <h1><FiRefreshCw color="#00b670" />Atualizar Receptor</h1>
                                     <p className="check-in-descricao">Preencha os campos para fazer a atualização de um Receptor.</p>
                                     <form onSubmit={updateReceiver}>
                                         <input
@@ -296,7 +296,7 @@ export default function RegisterReceiver() {
                         if (openDelete == true) {
                             return (
                                 <div>
-                                    <h1><FiCheckSquare color="#E02041" />Excluir Receptor</h1>
+                                    <h1><FiTrash2 color="#00b670" />Excluir Receptor</h1>
                                     <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
                                     <form onSubmit={deleteReceiver}>
                                         <input

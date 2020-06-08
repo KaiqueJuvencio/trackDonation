@@ -26,8 +26,6 @@
     text-align: center;
 }
 
-tr:hover{background-color:#f3bdc6;}
-
 .global-icon{
     display: flex;
     flex-direction: row;

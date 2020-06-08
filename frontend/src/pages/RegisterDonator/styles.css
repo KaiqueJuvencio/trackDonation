@@ -108,7 +108,7 @@ body { font-family: Helvetica; }
 
 .register-donator-container .content .register-donator-description p {
   border-top: 2px dashed;
-  border-color: #e02041 !important;
+  border-color: #00b670 !important;
   margin:0; padding: 30px;
   counter-increment: section;
   position: relative;
@@ -135,7 +135,7 @@ body { font-family: Helvetica; }
   padding: 10px;
   height: 20px;
   width: 20px;
-  background-color: #e02041;
+  background-color: #00b670;
   text-align:center;
   color: white;
   font-size: 110%;
@@ -150,7 +150,7 @@ body { font-family: Helvetica; }
   padding: 10px;
   height: 20px;
   width: 20px;
-  background-color: #e02041;
+  background-color: #00b670;
   text-align:center;
   color: white;
   font-size: 110%;
