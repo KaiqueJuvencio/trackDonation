@@ -28,7 +28,7 @@ public class JavaMailHelper {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("kaiquejuvenciocosta@gmail.com", "senha");
+				return new PasswordAuthentication(System.getenv("E-MAIL"), System.getenv("SENHA"));
 			}
 		});
 		/** Ativa Debug para sessão */
@@ -36,7 +36,7 @@ public class JavaMailHelper {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("kaiquejuvenciocosta@gmail.com"));
+			message.setFrom(new InternetAddress(System.getenv("E-MAIL")));
 
 			// Remetente
 
@@ -46,7 +46,7 @@ public class JavaMailHelper {
 			message.setRecipients(Message.RecipientType.TO, toUser);
 			message.setSubject("Rastreio de doação IRES");// Assunto
 			
-			String msgBody = "Olá " + donatorName + " gostariamos de dar um feedback sobre a sua doação. Ela foi doada para o(a) " + receiverName + " da família " + receiverFamily;
+			String msgBody = "Olá, " + donatorName + ". \n\nGostariamos de dar um feedback sobre a sua doação. Ela foi entregue para o(a) " + receiverName + " da família " + receiverFamily;
 			
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
 	        messageBodyPart.setText(msgBody);
