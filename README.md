@@ -8,7 +8,7 @@ Track Donation IRES
 
 </h1>
 
-<p align="center">Projeto desenvolvido de forma voluntária para a Organização IRES para o gerenciamento de doadores e receptores de cestas básicas. Tendo também como função, dar um feedback para o doador de qual foi o destino de sua doação com o nome da família e foto (se autorizado pelo receptor).</p>
+<p align="center">Projeto desenvolvido de forma voluntária para a <a href="https://www.iresoficial.org/">Organização IRES<a> para o gerenciamento de doadores e receptores de cestas básicas. Tendo também como função, dar um feedback para o doador de qual foi o destino de sua doação com o nome da família e foto (se autorizado pelo receptor).</p>
 
 [//]: # (Add your gifs/images here:)
 <div>
@@ -22,12 +22,12 @@ Track Donation IRES
 
 <hr />
 
-## Features
+## Ferramentas
 [//]: # (Add the features of your project here:)
-This app features all the latest tools and practices in development!
 
 - ⚛️ **React Js** — Biblioteca JavaScript para construir interface do usuário
 - 💹 **Java** — Construção de toda lógica backend
+- 💹 **SQL Server** — Banco de Dados 
 
 
 ## Build & Run - FRONTEND
