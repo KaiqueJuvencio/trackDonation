@@ -130,8 +130,8 @@ export default function RegisterDonator() {
                                     <form onSubmit={registerDonator}>
                                         <input
                                             placeholder="Doação"
-                                            value={donationTest}
-                                            onChange={e => { setDonationTest(e.target.value) }}
+                                            value={donation}
+                                            onChange={e => { setDonation(e.target.value) }}
                                         />
                                         <input
                                             placeholder="E-mail"
