@@ -72,21 +72,37 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 		EntityManager manager = factory.createEntityManager();// Para se comunicar com o JPA
 
 		ReceiverVO receiver = manager.find(ReceiverVO.class, id);
-
+		System.out.println(receiver);
+		
 		manager.getTransaction().begin();
-		receiver.setDonationReceived(donationReceived);
-		receiver.setName(name);
-		receiver.setEmail(email);
-		receiver.setRg(rg);
-		receiver.setDateOfBirth(dateOfBirth);
-		receiver.setPhone(phone);
-		receiver.setAddress(address);
-		receiver.setFamily(family);
-		receiver.setResidentsQuantity(residentsQuantity);
-		receiver.setMonthGotDonation(monthGotDonation);
-		receiver.setPhoto(photo);
-		manager.getTransaction().commit();
+		if(name.isEmpty()==false) {receiver.setName(name);}
+		if(donationReceived.isEmpty()==false) {receiver.setDonationReceived(donationReceived);}
+		if(email.isEmpty()==false) {receiver.setEmail(email);}
+		if(rg.isEmpty()==false) {receiver.setRg(rg);}
+		if(dateOfBirth.isEmpty()==false) {receiver.setDateOfBirth(dateOfBirth);}
+		if(phone.isEmpty()==false) {receiver.setPhone(phone);}
+		if(family.isEmpty()==false) {receiver.setFamily(family);}
+		if(monthGotDonation.isEmpty()==false) {receiver.setMonthGotDonation(monthGotDonation);}
+		if(photo.isEmpty()==false) {receiver.setPhoto(photo);}
+//		if(residentsQuantity.isEmpty()==false) {receiver.setName(residentsQuantity);}
 
+		Query query = manager.createNativeQuery("update Receiver set Email=:email, Id=:id, Nome=:name, DoacaoRecebida=:donationReceived, RG=:rg, DataNascimento=:dateOfBirth, Telefone=:phone, Endereco=:address, Familia=:family, QtdMoradores=:residentsQuantity, MesesCestasPegas=:monthGotDonation, Foto=:photo where Id=:id");
+		query.setParameter("id", receiver.getId());
+		query.setParameter("name", receiver.getName());
+		query.setParameter("donationReceived", receiver.getDonationReceived());
+		query.setParameter("email", receiver.getEmail());
+		query.setParameter("rg", receiver.getRg());
+		query.setParameter("dateOfBirth", receiver.getDateOfBirth());
+		query.setParameter("phone", receiver.getPhone());
+		query.setParameter("address", receiver.getAddress());
+		query.setParameter("family", receiver.getFamily());
+		query.setParameter("residentsQuantity", receiver.getResidentsQuantity());
+		query.setParameter("monthGotDonation", receiver.getMonthGotDonation());
+		query.setParameter("photo", receiver.getPhoto());
+		query.executeUpdate();
+		
+		manager.getTransaction().commit();
+		
 		manager.close();
 		factory.close();
 	}
