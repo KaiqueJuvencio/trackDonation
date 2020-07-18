@@ -72,21 +72,22 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 		EntityManager manager = factory.createEntityManager();// Para se comunicar com o JPA
 
 		ReceiverVO receiver = manager.find(ReceiverVO.class, id);
-		System.out.println(receiver);
 		
 		manager.getTransaction().begin();
+		if(id.toString().isEmpty()==false) {receiver.setId(id);}
 		if(name.isEmpty()==false) {receiver.setName(name);}
 		if(donationReceived.isEmpty()==false) {receiver.setDonationReceived(donationReceived);}
 		if(email.isEmpty()==false) {receiver.setEmail(email);}
 		if(rg.isEmpty()==false) {receiver.setRg(rg);}
 		if(dateOfBirth.isEmpty()==false) {receiver.setDateOfBirth(dateOfBirth);}
 		if(phone.isEmpty()==false) {receiver.setPhone(phone);}
+		if(address.isEmpty()==false) {receiver.setAddress(address);}
 		if(family.isEmpty()==false) {receiver.setFamily(family);}
 		if(monthGotDonation.isEmpty()==false) {receiver.setMonthGotDonation(monthGotDonation);}
 		if(photo.isEmpty()==false) {receiver.setPhoto(photo);}
-//		if(residentsQuantity.isEmpty()==false) {receiver.setName(residentsQuantity);}
+		if(residentsQuantity.toString().isEmpty()==false) {receiver.setResidentsQuantity(residentsQuantity);}
 
-		Query query = manager.createNativeQuery("update Receiver set Email=:email, Id=:id, Nome=:name, DoacaoRecebida=:donationReceived, RG=:rg, DataNascimento=:dateOfBirth, Telefone=:phone, Endereco=:address, Familia=:family, QtdMoradores=:residentsQuantity, MesesCestasPegas=:monthGotDonation, Foto=:photo where Id=:id");
+		Query query = manager.createNativeQuery("UPDATE Receiver SET Email=:email, Id=:id, Nome=:name, DoacaoRecebida=:donationReceived, RG=:rg, DataNascimento=:dateOfBirth, Telefone=:phone, Endereco=:address, Familia=:family, QtdMoradores=:residentsQuantity, MesesCestasPegas=:monthGotDonation, Foto=:photo WHERE Id=:id");
 		query.setParameter("id", receiver.getId());
 		query.setParameter("name", receiver.getName());
 		query.setParameter("donationReceived", receiver.getDonationReceived());

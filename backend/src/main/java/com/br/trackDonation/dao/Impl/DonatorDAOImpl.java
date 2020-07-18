@@ -68,11 +68,21 @@ public class DonatorDAOImpl implements DonatorDAO {
         DonatorVO donator = manager.find(DonatorVO.class, id);
          
         manager.getTransaction().begin();
-        donator.setName(name);
-		donator.setDonation(donation);
-		donator.setEmail(email);
-		donator.setPhone(phone);
-		donator.setRegisterDate(formatador.format(date.getTime()));
+        if(id.toString().isEmpty()==false) {donator.setId(id);}
+        if(name.isEmpty()==false) {donator.setName(name);}
+        if(donation.isEmpty()==false) {donator.setDonation(donation);}
+        if(email.isEmpty()==false) {donator.setEmail(email);}
+        if(phone.isEmpty()==false) {donator.setPhone(phone);}
+        donator.setRegisterDate(formatador.format(date.getTime()));
+        
+        Query query = manager.createNativeQuery("UPDATE Receiver SET Id=:id, Nome=:name, Email=:email, Telefone=:phone, Doacao=:donation WHERE Id=:id");
+        query.setParameter("id", id);
+        query.setParameter("email", email);
+        query.setParameter("donation", donation);
+        query.setParameter("phone", phone);
+        query.setParameter("name", name);
+		query.executeUpdate();
+		
         manager.getTransaction().commit();
         
         manager.close();
