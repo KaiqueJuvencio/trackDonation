@@ -85,7 +85,7 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 		if(family.isEmpty()==false) {receiver.setFamily(family);}
 		if(monthGotDonation.isEmpty()==false) {receiver.setMonthGotDonation(monthGotDonation);}
 		if(photo.isEmpty()==false) {receiver.setPhoto(photo);}
-		if(residentsQuantity.toString().isEmpty()==false) {receiver.setResidentsQuantity(residentsQuantity);}
+		if(residentsQuantity != null) {receiver.setResidentsQuantity(residentsQuantity);}
 
 		Query query = manager.createNativeQuery("UPDATE Receiver SET Email=:email, Id=:id, Nome=:name, DoacaoRecebida=:donationReceived, RG=:rg, DataNascimento=:dateOfBirth, Telefone=:phone, Endereco=:address, Familia=:family, QtdMoradores=:residentsQuantity, MesesCestasPegas=:monthGotDonation, Foto=:photo WHERE Id=:id");
 		query.setParameter("id", receiver.getId());
