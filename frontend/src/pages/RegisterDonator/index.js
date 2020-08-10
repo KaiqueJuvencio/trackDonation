@@ -60,7 +60,7 @@ export default function RegisterDonator() {
 
     async function registerDonator() {
         if (donation === '' || email === '' || name === '') {
-            alert("Insira as informações necessárias para cadastro!");
+            alert("Nome, N° de doação e e-mail são necessários. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.post('/donator/register?donation=' + donation + '&email=' + email + '&name=' + name + '&phone=' + phone)
@@ -71,8 +71,8 @@ export default function RegisterDonator() {
     }
 
     async function updateDonator() {
-        if (id === '' || donation === '' || email === '' || name === '') {
-            alert("Insira as informações necessárias para cadastro!");
+        if (id === '') {
+            alert("ID é necessário. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.put('/donator?donation=' + donation + '&email=' + email + '&id=' + id + '&name=' + name + '&phone=' + phone)
@@ -85,7 +85,7 @@ export default function RegisterDonator() {
 
     async function deleteDonator() {
         if (id === '') {
-            alert("Insira as informações necessárias para cadastro!");
+            alert("ID é necessário. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.delete('/donator?id=' + id)
@@ -97,7 +97,7 @@ export default function RegisterDonator() {
 
     async function sendFeedbackDonator() {
         if (donation === '') {
-            alert("Insira as informações necessárias para cadastro!");
+            alert("N° de doação é necessário. Insira e tente novamente!");
         } else {
             try {
                 await trackDonationApi.post('/track-donation?donation=' + donation)
