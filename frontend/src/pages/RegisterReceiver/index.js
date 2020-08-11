@@ -85,7 +85,7 @@ export default function RegisterReceiver() {
             alert("Nome é necessario. Insira e tente novamente!");
         } else {
             try {
-                await trackDonationApi.post('/receiver/register?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
+                await trackDonationApi.post('/receiver?address=' + address + '&dateOfBirth=' + dateOfBirth + '&donationReceived=' + donation + '&email=' + email + '&family=' + family + '&monthGotDonation=' + monthGotDonation + '&name=' + name + '&phone=' + phone + '&residentsQuantity=' + residentsQuantity + '&rg=' + rg, data, {}).then(res => {
                     console.log(res.statusText)
                 })
                 alert("Cadastro realizado com sucesso!");

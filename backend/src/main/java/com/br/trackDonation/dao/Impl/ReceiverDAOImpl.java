@@ -11,7 +11,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.br.trackDonation.dao.ReceiverDAO;
-import com.br.trackDonation.domains.DonatorVO;
 import com.br.trackDonation.domains.ReceiverVO;
 
 @Repository
@@ -101,7 +100,6 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 		query.setParameter("monthGotDonation", receiver.getMonthGotDonation());
 		query.setParameter("photo", receiver.getPhoto());
 		query.executeUpdate();
-		
 		manager.getTransaction().commit();
 		
 		manager.close();

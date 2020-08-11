@@ -62,7 +62,7 @@ export default function RegisterDonator() {
             alert("Nome, N° de doação e e-mail são necessários. Insira e tente novamente!");
         } else {
             try {
-                await trackDonationApi.post('/donator/register?donation=' + donation + '&email=' + email + '&name=' + name + '&phone=' + phone)
+                await trackDonationApi.post('/donator?donation=' + donation + '&email=' + email + '&name=' + name + '&phone=' + phone)
             } catch (err) {
                 alert(err);
             }

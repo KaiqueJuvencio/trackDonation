@@ -18,19 +18,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.br.trackDonation.service.ReceiverService;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-
+@CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("/receiver")
 public class ReceiverController {
 
 	@Autowired
 	private ReceiverService receiverService;
 
-	@CrossOrigin
-//	@ApiImplicitParam(name = "file-data", value = "inscrito, para-inscricao, historico", paramType = "formData", dataType = "file", required = false)
-	@PostMapping("receiver/register")
+	@PostMapping
 	public String register(@RequestParam(required=false) String donationReceived, @RequestParam(required=false) String name, @RequestParam(required=false) String email,
 			@RequestParam(required=false) String rg, @RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone,
 			@RequestParam(required=false) String address, @RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity,
@@ -45,14 +41,12 @@ public class ReceiverController {
 				residentsQuantity, monthGotDonation);
 	}
 
-	@CrossOrigin
-	@GetMapping("/receiver")
+	@GetMapping
 	public List<Object[]> getAllReceivers() {
 		return receiverService.getAllReceivers();
 	}
 
-	@CrossOrigin
-	@PutMapping("/receiver")
+	@PutMapping
 	public String updateReceiver(@RequestParam Integer id, @RequestParam(required=false) String donationReceived,
 			@RequestParam(required=false) String name, @RequestParam(required=false) String email, @RequestParam(required=false) String rg,
 			@RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone, @RequestParam(required=false) String address,
@@ -62,8 +56,7 @@ public class ReceiverController {
 				family, residentsQuantity, monthGotDonation);
 	}
 
-	@CrossOrigin
-	@DeleteMapping("/receiver")
+	@DeleteMapping
 	public String deleteReceiver(@RequestParam Integer id) {
 		return receiverService.deleteReceiver(id);
 	}
