@@ -9,7 +9,6 @@ import trackDonationApi from '../../services/trackDonationApi';
 export default function RegisterDonator() {
     const [id, setId] = useState('');
     const [donation, setDonation] = useState('');
-    const [donationTest, setDonationTest] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');

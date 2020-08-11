@@ -1,6 +1,5 @@
 package com.br.trackDonation.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +18,28 @@ import com.br.trackDonation.service.DonatorService;
 @RestController
 @RequestMapping("/")
 public class DonatorController {
-	
+
 	@Autowired
 	private DonatorService donatorService;
-	
+
 	@PostMapping("/donator/register")
-	public String register(@RequestParam(required=false) String name, @RequestParam(required=false) String donation, @RequestParam(required=false) String email, @RequestParam(required=false) String phone) {
+	public String register(@RequestParam(required = false) String name, @RequestParam(required = false) String donation,
+			@RequestParam(required = false) String email, @RequestParam(required = false) String phone) {
 		return donatorService.registerDonator(name, donation, email, phone);
 	}
-	
+
 	@GetMapping("/donator")
 	public List<Object[]> getAllDonators() {
 		return donatorService.getAllDonators();
 	}
-	
+
 	@PutMapping("/donator")
-	public String updateDonator(@RequestParam Integer id, @RequestParam(required=false) String name, @RequestParam(required=false) String donation, @RequestParam(required=false) String email, @RequestParam(required=false) String phone) {
+	public String updateDonator(@RequestParam Integer id, @RequestParam(required = false) String name,
+			@RequestParam(required = false) String donation, @RequestParam(required = false) String email,
+			@RequestParam(required = false) String phone) {
 		return donatorService.updateDonator(id, name, donation, email, phone);
 	}
-	
+
 	@DeleteMapping("/donator")
 	public String deleteDonator(@RequestParam Integer id) {
 		return donatorService.deleteDonator(id);
