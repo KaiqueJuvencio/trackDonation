@@ -18,10 +18,10 @@ export default function RegisterDonator() {
     const [openDelete, setOpenDelete] = useState('');
     const [openSendFeedback, setOpenSendFeedback] = useState('');
 
-    const [receivers, setReceiver] = useState([]);
+    const [donators, setReceiver] = useState([]);
 
     const ReceiversComponent = (note) => {
-        if (receivers.length != 0) {
+        if (donators.length != 0) {
             return (
                 <table>
                     <tr>
@@ -32,14 +32,14 @@ export default function RegisterDonator() {
                         <th>Telefone</th>
                         <th>Data Cadastro</th>
                     </tr>
-                    {receivers.map(receiver => (
+                    {donators.map(donator => (
                         <tr>
-                            <td>{receiver[0]}</td>
-                            <td>{receiver[1]}</td>
-                            <td>{receiver[2]}</td>
-                            <td>{receiver[3]}</td>
-                            <td>{receiver[4]}</td>
-                            <td>{receiver[5]}</td>
+                            <td>{donator[0]}</td>
+                            <td>{donator[1]}</td>
+                            <td>{donator[2]}</td>
+                            <td>{donator[3]}</td>
+                            <td>{donator[4]}</td>
+                            <td>{donator[5]}</td>
                         </tr>
                     ))}
                 </table>
