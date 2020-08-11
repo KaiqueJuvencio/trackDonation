@@ -54,10 +54,20 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 		EntityManager manager = factory.createEntityManager();// Para se comunicar com o JPA
 
 		Query query = manager.createNativeQuery(
-				"select R.Id, R.DoacaoRecebida, R.Nome as D_NOME, R.Email, R.RG, R.DataNascimento, R.Telefone, R.Endereco, R.Familia, R.QtdMoradores, R.MesesCestasPegas, R.DataCadastro, R.Foto from Receiver as R ORDER BY D_NOME ASC");
-
+				 "SELECT R.Id, "
+					+ "R.DoacaoRecebida, "
+					+ "R.Nome as D_NOME, "
+					+ "R.Email, R.RG, "
+					+ "R.DataNascimento, "
+					+ "R.Telefone, "
+					+ "R.Endereco, "
+					+ "R.Familia, "
+					+ "R.QtdMoradores, "
+					+ "R.MesesCestasPegas, "
+					+ "R.DataCadastro, "
+					+ "R.Foto "
+			   + "FROM Receiver AS R ORDER BY D_NOME ASC");
 		List<Object[]> result = query.getResultList();
-
 		manager.close();
 		factory.close();
 
@@ -98,7 +108,7 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 					+ "QtdMoradores=:residentsQuantity, "
 					+ "MesesCestasPegas=:monthGotDonation, "
 					+ "Foto=:photo "
-				+ "WHERE Id=:id");
+			   + "WHERE Id=:id");
 		query.setParameter("id", receiver.getId());
 		query.setParameter("name", receiver.getName());
 		query.setParameter("donationReceived", receiver.getDonationReceived());
