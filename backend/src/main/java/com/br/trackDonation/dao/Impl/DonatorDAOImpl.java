@@ -75,12 +75,18 @@ public class DonatorDAOImpl implements DonatorDAO {
         if(phone.isEmpty()==false) {donator.setPhone(phone);}
         donator.setRegisterDate(formatador.format(date.getTime()));
         
-        Query query = manager.createNativeQuery("UPDATE Donator SET Id=:id, Nome=:name, Email=:email, Telefone=:phone, Doacao=:donation WHERE Id=:id");
-        query.setParameter("id", id);
-        query.setParameter("name", name);
-        query.setParameter("email", email);
-        query.setParameter("phone", phone);
-        query.setParameter("donation", donation);
+        Query query = manager.createNativeQuery(
+        		"UPDATE Donator SET Id=:id, "
+	        		+ "Nome=:name, "
+	        		+ "Email=:email, "
+	        		+ "Telefone=:phone, "
+	        		+ "Doacao=:donation "
+        		+ "WHERE Id=:id");
+        query.setParameter("id", donator.getId());
+        query.setParameter("name", donator.getName());
+        query.setParameter("email", donator.getEmail());
+        query.setParameter("phone", donator.getPhone());
+        query.setParameter("donation", donator.getDonation());
 		query.executeUpdate();
         manager.getTransaction().commit();
         
