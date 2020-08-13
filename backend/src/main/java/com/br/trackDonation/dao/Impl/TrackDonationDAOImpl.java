@@ -17,11 +17,10 @@ public class TrackDonationDAOImpl implements TrackDonationDAO{
 	
 	@Override
 	public List<Object[]> tracking(String donation){
+		EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+	    EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
 		ReceiverVO receiver = new ReceiverVO();
 		DonatorVO donator = new DonatorVO();
-		
-        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
         
         Query query = manager.createNativeQuery(
         		 "SELECT D.doacao, "

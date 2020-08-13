@@ -25,7 +25,7 @@ export default function RegisterDonator() {
             return (
                 <table>
                     <tr>
-                        <th>Id</th>
+                        <th>Idd</th>
                         <th>Doação</th>
                         <th>Nome</th>
                         <th>Email</th>
@@ -40,6 +40,11 @@ export default function RegisterDonator() {
                             <td>{donator[3]}</td>
                             <td>{donator[4]}</td>
                             <td>{donator[5]}</td>
+                            <td>
+                                <form onSubmit={deleteDonator}>
+                                    <td><button type="submit" onClick={e => setId(donator[0])}><FiTrash2 color="#00b670" /></button></td>
+                                </form>
+                            </td>           
                         </tr>
                     ))}
                 </table>
@@ -83,15 +88,11 @@ export default function RegisterDonator() {
 
 
     async function deleteDonator() {
-        if (id === '') {
-            alert("ID é necessário. Insira e tente novamente!");
-        } else {
             try {
                 await trackDonationApi.delete('/donator?id=' + id)
             } catch (err) {
                 alert(err);
             }
-        }
     }
 
     async function sendFeedbackDonator() {

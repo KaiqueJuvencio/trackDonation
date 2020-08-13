@@ -17,8 +17,7 @@ import com.br.trackDonation.domains.ReceiverVO;
 public class ReceiverDAOImpl implements ReceiverDAO {
 
 	@Override
-	public void registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation, String photo) {
-		
+	public void registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation, String photo) {	
 		EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
 		
@@ -49,9 +48,8 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 
 	@Override
 	public List<Object[]> getAllReceivers() {
-
 		EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-		EntityManager manager = factory.createEntityManager();// Para se comunicar com o JPA
+		EntityManager manager = factory.createEntityManager();
 
 		Query query = manager.createNativeQuery(
 				 "SELECT R.Id, "
@@ -76,9 +74,8 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 
 	@Override
 	public void updateReceiver(Integer id, String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation, String photo) {
-
 		EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-		EntityManager manager = factory.createEntityManager();// Para se comunicar com o JPA
+		EntityManager manager = factory.createEntityManager();
 
 		ReceiverVO receiver = manager.find(ReceiverVO.class, id);
 		
@@ -130,9 +127,8 @@ public class ReceiverDAOImpl implements ReceiverDAO {
 
 	@Override
 	public void deleteReceiver(Integer id) {
-
 		EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-		EntityManager manager = factory.createEntityManager();// Para se comunicar com o JPA
+		EntityManager manager = factory.createEntityManager();
 
 		ReceiverVO receiver = manager.find(ReceiverVO.class, id);
 

@@ -39,7 +39,7 @@ public class DonatorController {
 			@RequestParam(required = false) String phone) {
 		return donatorService.updateDonator(id, name, donation, email, phone);
 	}
-
+	@CrossOrigin
 	@DeleteMapping
 	public String deleteDonator(@RequestParam Integer id) {
 		return donatorService.deleteDonator(id);

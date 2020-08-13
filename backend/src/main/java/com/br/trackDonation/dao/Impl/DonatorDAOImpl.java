@@ -19,7 +19,9 @@ public class DonatorDAOImpl implements DonatorDAO {
 	
 	@Override
 	public void registerDonator(String name, String donation, String email, String phone) {
-		
+        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        
 		DonatorVO donator = new DonatorVO();
 		Date date = new Date();
 		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -29,10 +31,6 @@ public class DonatorDAOImpl implements DonatorDAO {
 		donator.setEmail(email);
 		donator.setPhone(phone);
 		donator.setRegisterDate(formatador.format(date.getTime()));
-		
-        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
-        
         manager.getTransaction().begin();
         manager.persist(donator);
         manager.getTransaction().commit();
@@ -43,9 +41,8 @@ public class DonatorDAOImpl implements DonatorDAO {
 	
 	@Override
 	public List<Object[]> getAllDonators() {
-			
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        EntityManager manager = factory.createEntityManager();
         
         Query query = manager.createNativeQuery(
         		 "SELECT D.Id, "
@@ -64,9 +61,8 @@ public class DonatorDAOImpl implements DonatorDAO {
 	
 	@Override
 	public void updateDonator(Integer id, String name, String donation, String email, String phone) {
-		
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        EntityManager manager = factory.createEntityManager();
         
         Date date = new Date();
 		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -101,9 +97,8 @@ public class DonatorDAOImpl implements DonatorDAO {
 	
 	@Override
 	public void deleteDonator(Integer id) {
-		
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
-        EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
+        EntityManager manager = factory.createEntityManager();
 
         DonatorVO donator = manager.find(DonatorVO.class, id);
          
