@@ -6,7 +6,9 @@
     outline: 0;
     box-sizing: border-box;
 }
-
+.trash-button{
+    border: none;
+}
 .compass-text{
     font-size: 30px;
     color: #00b670;
