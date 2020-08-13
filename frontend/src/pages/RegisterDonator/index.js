@@ -199,26 +199,6 @@ export default function RegisterDonator() {
                         } else { return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Alterar Doador</button>) }
                     })()}
 
-                    {(function () {
-                        if (openDelete == true) {
-                            return (
-                                <div>
-                                    <h1><FiTrash2 color="#00b670" />Excluir Doador</h1>
-                                    <p>Informe o Id do Doador que deseja excluir.</p>
-                                    <form onSubmit={deleteDonator}>
-                                        <input
-                                            className="input-style-large"
-                                            placeholder="Id"
-                                            value={id}
-                                            onChange={e => setId(e.target.value)}
-                                        />
-                                        <button className="button-intern" type="submit">Enviar</button>
-                                        <button className="button-intern" onClick={e => setOpenDelete(false)} type="button">Fechar</button>
-                                    </form>
-                                </div>
-                            )
-                        } else { return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Doador</button>) }
-                    })()}
 
                     {(function () {
                         if (openSendFeedback == true) {
