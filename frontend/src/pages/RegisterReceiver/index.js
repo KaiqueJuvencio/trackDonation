@@ -296,29 +296,6 @@ export default function RegisterReceiver() {
                             )
                         } else { return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>) }
                     })()}
-
-                    {(function () {
-                        if (openDelete == true) {
-                            return (
-                                <div>
-                                    <h1><FiTrash2 color="#00b670" />Excluir Receptor</h1>
-                                    <p className="check-in-descricao">Informe o Id do Receptor que deseja excluir.</p>
-                                    <form onSubmit={deleteReceiver}>
-                                        <input
-
-                                            placeholder="Id"
-                                            value={id}
-                                            onChange={e => setId(e.target.value)}
-                                        />
-                                        <button className="button-intern" type="submit">Enviar</button>
-                                        <button className="button-intern" onClick={e => setOpenDelete(false)} type="button">Fechar</button>
-                                    </form>
-                                </div>
-                            )
-                        }
-                        else { return (<button className="button" onClick={e => setOpenDelete(true)} type="button">Excluir Receptor</button>) }
-                    })()}
-
                     <ReceiversComponent />
                 </section>
             </div>
