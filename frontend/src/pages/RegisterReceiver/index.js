@@ -59,6 +59,11 @@ export default function RegisterReceiver() {
                             <td>{receiver[10]}</td>
                             <td>{receiver[11]}</td>
                             <td>{receiver[12]}</td>
+                            <td>
+                                <form onSubmit={deleteReceiver}>
+                                    <td><button class="trash-button" type="submit" onClick={e => setId(receiver[0])}><FiTrash2 color="#E02041" /></button></td>
+                                </form>
+                            </td>     
                         </tr>
                     ))}
                 </table>
