@@ -61,7 +61,7 @@ export default function RegisterReceiver() {
                             <td>{receiver[12]}</td>
                             <td>
                                 <form onSubmit={deleteReceiver}>
-                                    <td><button class="trash-button" type="submit" onClick={e => setId(receiver[0])}><FiTrash2 color="#E02041" /></button></td>
+                                    <button class="trash-button" type="submit" onClick={e => setId(receiver[0])}><FiTrash2 color="#E02041" /></button>
                                 </form>
                             </td>     
                         </tr>
@@ -129,7 +129,7 @@ export default function RegisterReceiver() {
                 await trackDonationApi.delete('/receiver?id=' + id).then(res => {
                     console.log(res.statusText)
                 })
-                alert("Exclusão realizada com sucesso!")
+                alert("Exclusão realizada com sucesso!");
             } catch (err) {
                 alert(err);
             }
@@ -296,9 +296,11 @@ export default function RegisterReceiver() {
                             )
                         } else { return (<button className="button" onClick={e => setOpenUpdate(true)} type="button">Atualizar Receptor</button>) }
                     })()}
-                    <ReceiversComponent />
+                <ReceiversComponent />    
                 </section>
+    
             </div>
+            
         </div>
     )
 }

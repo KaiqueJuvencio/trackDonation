@@ -42,7 +42,7 @@ export default function RegisterDonator() {
                             <td>{donator[5]}</td>
                             <td>
                                 <form onSubmit={deleteDonator}>
-                                    <td><button class="trash-button" type="submit" onClick={e => setId(donator[0])}><FiTrash2 color="#E02041" /></button></td>
+                                    <button class="trash-button" type="submit" onClick={e => setId(donator[0])}><FiTrash2 color="#E02041" /></button>
                                 </form>
                             </td>           
                         </tr>
