@@ -25,6 +25,7 @@ export default function RegisterDonator() {
             return (
                 <table>
                     <tr>
+                    
                         <th>Idd</th>
                         <th>Doação</th>
                         <th>Nome</th>
@@ -42,7 +43,8 @@ export default function RegisterDonator() {
                             <td>{donator[5]}</td>
                             <td>
                                 <form onSubmit={deleteDonator}>
-                                    <button class="trash-button" type="submit" onClick={e => setId(donator[0])}><FiTrash2 color="#E02041" /></button>
+                                <a href="#" class="tooltip" data-title="Excluir"><button class="trash-button" type="submit" onClick={e => setId(donator[0])}><FiTrash2 color="#E02041" /></button></a>
+                                    
                                 </form>
                             </td>           
                         </tr>

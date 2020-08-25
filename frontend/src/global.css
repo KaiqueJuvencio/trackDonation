@@ -166,6 +166,53 @@ th, td{
     border-bottom: 1px solid #00b670;
 }
 
+body {
+  margin: 30px;
+}
+a.tooltip {
+  text-decoration: none;
+  color: #000;
+  font: Comfortaa, sans-serif;
+  font-size: 16px;
+  transition: all 0.4s ease;
+  -webkit-transition: all .4s ease;
+  padding: 5px;
+  background-color: #FFF;
+  position: relative;
+}
+a.tooltip:before {
+  content: attr(data-title);
+  background-color: #000;
+  color: #FFF;
+  font-size: 13px;
+  padding: 12px;
+  box-sizing: border-box;
+  font: Comfortaa, sans-serif;
+  position: absolute;
+  left: 162%;
+  bottom: -20%;
+  width: 250px;
+  opacity: 0;
+  transition: all .4s ease;
+}
+a.tooltip:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  left: 5px;
+  bottom: -16px;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #000 transparent;
+  transition: all .4s ease;
+}
+a.tooltip:hover:after,
+a.tooltip:hover:before {
+  opacity: 1;
+}
+
 
 @media (max-width: 767px){
     *{
