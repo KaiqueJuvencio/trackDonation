@@ -61,7 +61,7 @@ export default function RegisterReceiver() {
                             <td>{receiver[12]}</td>
                             <td>
                                 <form onSubmit={deleteReceiver}>
-                                    <button class="trash-button" type="submit" onClick={e => setId(receiver[0])}><FiTrash2 color="#E02041" /></button>
+                                    <a href="#" class="tooltip" data-title="Excluir"><button class="trash-button" type="submit" onClick={e => setId(receiver[0])}><FiTrash2 color="#E02041" /></button></a>
                                 </form>
                             </td>     
                         </tr>
