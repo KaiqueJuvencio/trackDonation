@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.br.trackDonation.dao.ReceiverDAO;
 import com.br.trackDonation.domains.ReceiverVO;
@@ -18,10 +19,12 @@ public class ReceiverServiceImpl implements ReceiverService {
 	private ReceiverDAO receiverDAO;
 	
 	@Override
-	public ReceiverVO registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException {
-		FileHelper file = new FileHelper();
-		String photoName = file.verifiedDonationPhoto(donationReceived);
-		
+	public ReceiverVO registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation, MultipartFile receiverPhoto) throws IOException {
+		String photoName = "Não selecionada";
+		if(receiverPhoto!=null) {
+			FileHelper file = new FileHelper();
+			photoName = file.verifiedDonationPhoto(donationReceived);
+		}
 		return receiverDAO.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
 	}
 	
