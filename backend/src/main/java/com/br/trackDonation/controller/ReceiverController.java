@@ -3,6 +3,7 @@ package com.br.trackDonation.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ReceiverController {
 	private ReceiverService receiverService;
 
 	@PostMapping
-	public ResponseEntity<ReceiverVO> register(@RequestParam(required=false) String donationReceived, @RequestParam(required=false) String name, @RequestParam(required=false) String email,
+	public ResponseEntity<ReceiverVO> register(@Valid @RequestParam(required=false) String donationReceived, @RequestParam(required=false) String name, @RequestParam(required=false) String email,
 			@RequestParam(required=false) String rg, @RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone,
 			@RequestParam(required=false) String address, @RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity,
 			@RequestParam(required=false) String monthGotDonation, @RequestPart(required=false) MultipartFile receiverPhoto)
@@ -41,7 +42,6 @@ public class ReceiverController {
 
 		ReceiverVO receiverVO = receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family,
 				residentsQuantity, monthGotDonation, receiverPhoto);
-		
 		return ResponseEntity.ok(receiverVO);
 	}
 
@@ -51,13 +51,14 @@ public class ReceiverController {
 	}
 
 	@PutMapping
-	public String updateReceiver(@RequestParam Integer id, @RequestParam(required=false) String donationReceived,
+	public ResponseEntity<ReceiverVO> updateReceiver(@RequestParam Integer id, @RequestParam(required=false) String donationReceived,
 			@RequestParam(required=false) String name, @RequestParam(required=false) String email, @RequestParam(required=false) String rg,
 			@RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone, @RequestParam(required=false) String address,
 			@RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity, @RequestParam(required=false) String monthGotDonation,
 			@RequestPart(required=false) MultipartFile receiverPhoto) throws IOException {
-		return receiverService.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address,
-				family, residentsQuantity, monthGotDonation);
+		ReceiverVO receiverVO = receiverService.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address,
+				family, residentsQuantity, monthGotDonation, receiverPhoto);
+		return ResponseEntity.ok(receiverVO);
 	}
 
 	@DeleteMapping

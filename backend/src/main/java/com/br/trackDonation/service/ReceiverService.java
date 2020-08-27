@@ -13,9 +13,9 @@ public interface ReceiverService {
 
 	public List<Object[]> getAllReceivers();
 
-	public String updateReceiver(Integer id, String name, String donationReceived, String email, String rg,
+	public ReceiverVO updateReceiver(Integer id, String name, String donationReceived, String email, String rg,
 			String dateOfBirth, String phone, String address, String family, Integer residentsQuantity,
-			String monthGotDonation) throws IOException;
+			String monthGotDonation, MultipartFile receiverPhoto) throws IOException;
 
 	public String deleteReceiver(Integer id);
 }

@@ -34,12 +34,13 @@ public class ReceiverServiceImpl implements ReceiverService {
 	}
 	
 	@Override
-	public String updateReceiver(Integer id, String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException {
-		FileHelper file = new FileHelper();
-		String photoName = file.verifiedDonationPhoto(donationReceived);
-		
-		receiverDAO.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
-		return "Receptor atualizado com sucesso";
+	public ReceiverVO updateReceiver(Integer id, String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation, MultipartFile receiverPhoto) throws IOException {
+		String photoName = "Não selecionada";
+		if(receiverPhoto!=null) {
+			FileHelper file = new FileHelper();
+			photoName = file.verifiedDonationPhoto(donationReceived);
+		}
+		return receiverDAO.updateReceiver(id, name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
 	}
 	
 	@Override
