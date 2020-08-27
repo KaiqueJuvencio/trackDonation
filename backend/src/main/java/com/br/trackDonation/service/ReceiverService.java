@@ -3,8 +3,10 @@ package com.br.trackDonation.service;
 import java.io.IOException;
 import java.util.List;
 
+import com.br.trackDonation.domains.ReceiverVO;
+
 public interface ReceiverService {
-	public String registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth,
+	public ReceiverVO registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth,
 			String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException;
 
 	public List<Object[]> getAllReceivers();

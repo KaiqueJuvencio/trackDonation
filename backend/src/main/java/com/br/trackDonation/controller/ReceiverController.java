@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.br.trackDonation.domains.ReceiverVO;
 import com.br.trackDonation.service.ReceiverService;
 
 @CrossOrigin
@@ -27,7 +29,7 @@ public class ReceiverController {
 	private ReceiverService receiverService;
 
 	@PostMapping
-	public String register(@RequestParam(required=false) String donationReceived, @RequestParam(required=false) String name, @RequestParam(required=false) String email,
+	public ResponseEntity<ReceiverVO> register(@RequestParam(required=false) String donationReceived, @RequestParam(required=false) String name, @RequestParam(required=false) String email,
 			@RequestParam(required=false) String rg, @RequestParam(required=false) String dateOfBirth, @RequestParam(required=false) String phone,
 			@RequestParam(required=false) String address, @RequestParam(required=false) String family, @RequestParam(required=false) Integer residentsQuantity,
 			@RequestParam(required=false) String monthGotDonation, @RequestPart(required=false) MultipartFile receiverPhoto)
@@ -37,8 +39,10 @@ public class ReceiverController {
 				new File("C:\\Users\\kaiqu\\Desktop\\trackDonation\\" + receiverPhoto.getOriginalFilename()));
 		}
 
-		return receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family,
+		ReceiverVO receiverVO = receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family,
 				residentsQuantity, monthGotDonation);
+		
+		return ResponseEntity.ok(receiverVO);
 	}
 
 	@GetMapping

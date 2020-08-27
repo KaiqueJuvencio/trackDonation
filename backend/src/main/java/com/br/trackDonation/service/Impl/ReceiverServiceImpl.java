@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.trackDonation.dao.ReceiverDAO;
+import com.br.trackDonation.domains.ReceiverVO;
 import com.br.trackDonation.helper.FileHelper;
 import com.br.trackDonation.service.ReceiverService;
 
@@ -17,12 +18,11 @@ public class ReceiverServiceImpl implements ReceiverService {
 	private ReceiverDAO receiverDAO;
 	
 	@Override
-	public String registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException {
+	public ReceiverVO registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation) throws IOException {
 		FileHelper file = new FileHelper();
 		String photoName = file.verifiedDonationPhoto(donationReceived);
 		
-		receiverDAO.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
-		return "Receptor cadastrado com sucesso";
+		return receiverDAO.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family, residentsQuantity, monthGotDonation, photoName);
 	}
 	
 	@Override
