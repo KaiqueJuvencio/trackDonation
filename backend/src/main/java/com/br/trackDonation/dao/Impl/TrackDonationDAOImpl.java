@@ -34,13 +34,9 @@ public class TrackDonationDAOImpl implements TrackDonationDAO{
         manager.getTransaction().begin();
         manager.persist(receiver);
         manager.getTransaction().commit();
-        
-        List<Object[]> result = query.getResultList();
-        
+        List<Object[]> result = query.getResultList(); 
         manager.close();
         factory.close();
-        
-        return result;
-		
+        return result;		
 	}
 }

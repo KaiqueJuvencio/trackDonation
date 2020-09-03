@@ -41,7 +41,6 @@ public class ReceiverController {
 		receiverPhoto.transferTo(
 				new File("C:\\Users\\kaiqu\\Desktop\\trackDonation\\" + receiverPhoto.getOriginalFilename()));
 		}
-
 		ReceiverVO receiverVO = receiverService.registerReceiver(name, donationReceived, email, rg, dateOfBirth, phone, address, family,
 				residentsQuantity, monthGotDonation, receiverPhoto);
 		return ResponseEntity.ok(receiverVO);

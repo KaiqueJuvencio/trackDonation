@@ -29,12 +29,9 @@ public class TrackDonationController {
 			throws IOException, JSONException {
 
 		List<Object[]> trackDonationQuery = trackDonationService.tracking(donation);
-
 		Gson gson = new Gson();
 		String trackDonationQueryStr = gson.toJson(trackDonationQuery);
-
 		JavaMailHelper javaMail = new JavaMailHelper();
-
 		FileHelper file = new FileHelper();
 
 		for (Object[] each : trackDonationQuery) {
@@ -44,15 +41,11 @@ public class TrackDonationController {
 			String donatorPhone = gson.toJson(each[3]).replace("\"", "");
 			String receiverName = gson.toJson(each[4]).replace("\"", "");
 			String receiverFamily = gson.toJson(each[5]).replace("\"", "");
-
 			String receiverPhoto = file.verifiedDonationPhoto(receiverDonationNumber);
-
 			javaMail.sendMail(donatorMail, donatorName, receiverName, receiverFamily, receiverPhoto);
 			System.out.println(receiverPhoto);
 		}
-		
 		System.out.println("RESULTADO: " + trackDonationQueryStr);
-	
 		return "Sucesso";
 	}
 }
