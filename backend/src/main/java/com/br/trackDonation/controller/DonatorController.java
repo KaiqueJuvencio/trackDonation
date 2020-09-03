@@ -37,11 +37,13 @@ public class DonatorController {
 	}
 
 	@PutMapping
-	public String updateDonator(@RequestParam Integer id, @RequestParam(required = false) String name,
+	public ResponseEntity<DonatorVO> updateDonator(@RequestParam Integer id, @RequestParam(required = false) String name,
 			@RequestParam(required = false) String donation, @RequestParam(required = false) String email,
 			@RequestParam(required = false) String phone) {
-		return donatorService.updateDonator(id, name, donation, email, phone);
+		DonatorVO donatorVO = donatorService.updateDonator(id, name, donation, email, phone);
+		return ResponseEntity.ok(donatorVO);
 	}
+	
 	@CrossOrigin
 	@DeleteMapping
 	public String deleteDonator(@RequestParam Integer id) {

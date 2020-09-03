@@ -60,7 +60,7 @@ public class DonatorDAOImpl implements DonatorDAO {
 	}
 	
 	@Override
-	public void updateDonator(Integer id, String name, String donation, String email, String phone) {
+	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();
         
@@ -93,6 +93,7 @@ public class DonatorDAOImpl implements DonatorDAO {
         
         manager.close();
         factory.close();
+        return donator;
 	}
 	
 	@Override

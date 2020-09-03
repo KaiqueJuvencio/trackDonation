@@ -26,9 +26,8 @@ public class DonatorServiceImpl implements DonatorService {
 	}
 	
 	@Override
-	public String updateDonator(Integer id, String name, String donation, String email, String phone) {
-		donatorDAO.updateDonator(id, name, donation, email, phone);
-		return "Doador atualizado com sucesso";
+	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
+		return donatorDAO.updateDonator(id, name, donation, email, phone);
 	}
 	
 	@Override
