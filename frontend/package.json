@@ -9,6 +9,8 @@
     "axios": "^0.19.2",
     "connected-react-router": "^6.8.0",
     "history": "^4.10.1",
+    "jquery": "^3.5.1",
+    "jquery-mask-plugin": "^1.14.16",
     "package.json": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -12,13 +12,12 @@ import org.springframework.stereotype.Repository;
 
 import com.br.trackDonation.dao.DonatorDAO;
 import com.br.trackDonation.domains.DonatorVO;
-import com.br.trackDonation.domains.ReceiverVO;
 
 @Repository
 public class DonatorDAOImpl implements DonatorDAO {
 	
 	@Override
-	public void registerDonator(String name, String donation, String email, String phone) {
+	public DonatorVO registerDonator(String name, String donation, String email, String phone) {
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
         EntityManager manager = factory.createEntityManager();//Para se comunicar com o JPA
         
@@ -37,6 +36,7 @@ public class DonatorDAOImpl implements DonatorDAO {
         
         manager.close();
         factory.close();
+        return donator;
 	}
 	
 	@Override

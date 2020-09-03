@@ -4,6 +4,7 @@ import { FiArrowLeft, FiCheckSquare, FiRefreshCw, FiTrash2 } from 'react-icons/f
 import "./styles.css";
 import compass from '../../assets/compass.png'
 import trackDonationApi from '../../services/trackDonationApi';
+import $ from 'jquery';
 
 export default function RegisterReceiver() {
     const [id, setId] = useState('');
@@ -179,6 +180,7 @@ export default function RegisterReceiver() {
                                         placeholder="Nascimento"
                                         value={dateOfBirth}
                                         onChange={e => setDateOfBirth(e.target.value)}
+                                        id="campoData"
                                     />
                                     <input
                                         placeholder="Telefone"
