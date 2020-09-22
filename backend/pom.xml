@@ -12,7 +12,7 @@
 	<groupId>com.br</groupId>
 	<artifactId>trackDonation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>trackDonation</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -89,6 +89,14 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+		<dependency>
+		    <groupId>com.rabbitmq</groupId>
+		    <artifactId>amqp-client</artifactId>
+		    <version>5.7.3</version>
+		</dependency>
+		
 
 	</dependencies>
 

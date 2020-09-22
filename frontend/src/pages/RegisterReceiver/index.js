@@ -26,6 +26,7 @@ export default function RegisterReceiver() {
 
     const [receivers, setReceiver] = useState([]);
 
+
     const ReceiversComponent = (note) => {
         if (receivers.length != 0) {
             return (
