@@ -1,0 +1,30 @@
+version: "2.4"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: my-rabbit
+    volumes:
+      - ./rabbitmq/etc/definitions.json:/etc/rabbitmq/definitions.json
+      - ./rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    #  - ./rabbitmq/data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+    #  - ./rabbitmq/logs:/var/log/rabbitmq/log
+    ports:
+      - 5672:5672
+      - 15672:15672
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    entrypoint: ["java","-jar","/app.jar"]
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_RABBITMQ_VHOST=/
+      - SPRING_RABBITMQ_HOST=172.30.192.1
+      - SPRING_RABBITMQ_USER=rabbitmq-track-donation
+      - SPRING_RABBITMQ_PASS=rabbitmq-track-donation
+      - PORT=8080
+  
+
+  

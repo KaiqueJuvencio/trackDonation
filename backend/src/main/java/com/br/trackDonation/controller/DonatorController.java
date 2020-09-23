@@ -61,17 +61,19 @@ public class DonatorController {
 	@CrossOrigin
 	@GetMapping("/send")
 	public void send() throws IOException, TimeoutException {
-			  
+		
 			  ConnectionFactory factory = new ConnectionFactory();
-			  factory.setVirtualHost("/");
-			  factory.setHost("172.30.192.1");
-			  factory.setUsername("test");
-			  factory.setPassword("test");
+			  factory.setVirtualHost(System.getenv().get("SPRING_RABBITMQ_VHOST"));
+			  factory.setHost(System.getenv().get("SPRING_RABBITMQ_HOST"));
+			  factory.setUsername(System.getenv().get("SPRING_RABBITMQ_USER"));
+			  factory.setPassword(System.getenv().get("SPRING_RABBITMQ_PASS"));
+			  System.out.println(factory.getHost());
+			  System.out.println(factory.getPort());
+			  System.out.println(factory.getVirtualHost());
+			  System.out.println(factory.newConnection());
 			  try (Connection connection = factory.newConnection();
-					  
-			       Channel channel = connection.createChannel()) {
-				  System.out.println(connection);
-				  System.out.println(channel);
+					
+			      Channel channel = connection.createChannel()) {
 				  channel.queueDeclarePassive(QUEUE_NAME);
 				  String message = "Hello World!";
 				  channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
@@ -81,19 +83,16 @@ public class DonatorController {
 	}
 	
 	@GetMapping("/recv")
-	public void recvUm() throws IOException, TimeoutException {
-
+	public void recvOito() throws IOException, TimeoutException {
 				{
 				ConnectionFactory factory = new ConnectionFactory();
-				factory.setVirtualHost("/");
-				factory.setHost("172.30.192.1");
-				factory.setUsername("test");
-				factory.setPassword("test");
-
+				factory.setVirtualHost(System.getenv().get("SPRING_RABBITMQ_VHOST"));
+				factory.setHost(System.getenv().get("SPRING_RABBITMQ_HOST"));
+				factory.setUsername(System.getenv().get("SPRING_RABBITMQ_USER"));
+				factory.setPassword(System.getenv().get("SPRING_RABBITMQ_PASS"));
 				Connection connection = factory.newConnection();
 				Channel channel = connection.createChannel();
-				System.out.println(connection);
-				System.out.println(channel);
+
 				channel.queueDeclarePassive(QUEUE_NAME);
 				System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
