@@ -59,6 +59,28 @@ public class DonatorDAOImpl implements DonatorDAO {
         return result;
 	}
 	
+//	@Override
+//	public List<Object[]> getDonator(Integer id) {
+//        EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");
+//        EntityManager manager = factory.createEntityManager();
+//        
+//        Query query = manager.createNativeQuery(
+//        		 "SELECT D.Id, "
+//	        		+ "D.doacao, "
+//	        		+ "D.Nome as D_NOME, "
+//	        		+ "D.Email, "
+//	        		+ "D.Telefone, "
+//	        		+ "D.dataCadastro "
+//        	   + "FROM Donator AS D ORDER BY D_NOME ASC "
+//	        		+ "WHERE D.Id=:id");
+//        query.setParameter("id", id);
+//        List<Object[]> result = query.getResultList();
+//        manager.close();
+//        factory.close();
+//        
+//        return result;
+//	}
+	
 	@Override
 	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
         EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("trackDonation");

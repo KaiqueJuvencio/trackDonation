@@ -21,7 +21,7 @@ services:
       - "8080:8080"
     environment:
       - SPRING_RABBITMQ_VHOST=/
-      - SPRING_RABBITMQ_HOST=172.30.192.1
+      - SPRING_RABBITMQ_HOST=172.27.224.1
       - SPRING_RABBITMQ_USER=rabbitmq-track-donation
       - SPRING_RABBITMQ_PASS=rabbitmq-track-donation
       - PORT=8080

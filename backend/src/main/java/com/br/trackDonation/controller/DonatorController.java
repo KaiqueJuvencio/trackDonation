@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.trackDonation.domains.DonatorVO;
@@ -36,12 +37,13 @@ public class DonatorController {
 	public ResponseEntity<DonatorVO> register(@RequestParam(required = false) String name, @RequestParam(required = false) String donation,
 			@RequestParam(required = false) String email, @RequestParam(required = false) String phone) {
 		DonatorVO donatorVO = donatorService.registerDonator(name, donation, email, phone); 
-		return ResponseEntity.ok(donatorVO); 
+		return ResponseEntity.status(201).body(donatorVO); 
 	}
 
 	@GetMapping
-	public List<Object[]> getAllDonators() {
-		return donatorService.getAllDonators();
+	public ResponseEntity<List<Object[]>> getAllDonators() {
+		List<Object[]> donatorVO = donatorService.getAllDonators();
+		return ResponseEntity.ok(donatorVO);
 	}
 
 	@PutMapping
@@ -54,8 +56,9 @@ public class DonatorController {
 	
 	@CrossOrigin
 	@DeleteMapping
-	public String deleteDonator(@RequestParam Integer id) {
-		return donatorService.deleteDonator(id);
+	public ResponseEntity<String> deleteDonator(@RequestParam Integer id) {
+		donatorService.deleteDonator(id);
+		return ResponseEntity.status(204).body("Doador excluído com sucesso");
 	}
 	
 	@CrossOrigin

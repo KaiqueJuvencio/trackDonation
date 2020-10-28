@@ -31,9 +31,8 @@ public class DonatorServiceImpl implements DonatorService {
 	}
 	
 	@Override
-	public String deleteDonator(Integer id) {
+	public void deleteDonator(Integer id) {
 		donatorDAO.deleteDonator(id);
-		return "Doador excluído com sucesso";
 	}
 
 }
