@@ -14,7 +14,7 @@ import com.br.trackDonation.dao.ReceiverDAO;
 import com.br.trackDonation.domains.ReceiverVO;
 
 @Repository
-public class ReceiverDAOImpl implements ReceiverDAO {
+public class ReceiverDAOImpl implements ReceiverDAO{
 
 	@Override
 	public ReceiverVO registerReceiver(String name, String donationReceived, String email, String rg, String dateOfBirth, String phone, String address, String family, Integer residentsQuantity, String monthGotDonation, String photo) {	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.trackDonation.controller.exception.UserNotFoundException;
 import com.br.trackDonation.dao.DonatorDAO;
 import com.br.trackDonation.domains.DonatorVO;
 import com.br.trackDonation.service.DonatorService;
@@ -27,6 +28,10 @@ public class DonatorServiceImpl implements DonatorService {
 	
 	@Override
 	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
+		int a =1;
+		if(a==1) {
+			throw new UserNotFoundException("Usuário não existente");
+		}
 		return donatorDAO.updateDonator(id, name, donation, email, phone);
 	}
 	
