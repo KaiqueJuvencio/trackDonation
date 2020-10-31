@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.trackDonation.domains.DonatorVO;
@@ -32,18 +32,24 @@ public class DonatorController {
 	private DonatorService donatorService;
 	
 	private final static String QUEUE_NAME = "TrackDonation";
+	
+	@GetMapping
+	public ResponseEntity<List<Object[]>> getAllDonators() {
+		List<Object[]> donatorVO = donatorService.getAllDonators();
+		return ResponseEntity.ok(donatorVO);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<List<Object[]>> getDonator(@PathVariable Integer id) {
+		List<Object[]> donatorVO = donatorService.getDonator(id);
+		return ResponseEntity.ok(donatorVO);
+	}
 
 	@PostMapping
 	public ResponseEntity<DonatorVO> register(@RequestParam(required = false) String name, @RequestParam(required = false) String donation,
 			@RequestParam(required = false) String email, @RequestParam(required = false) String phone) {
 		DonatorVO donatorVO = donatorService.registerDonator(name, donation, email, phone); 
 		return ResponseEntity.status(201).body(donatorVO); 
-	}
-
-	@GetMapping
-	public ResponseEntity<List<Object[]>> getAllDonators() {
-		List<Object[]> donatorVO = donatorService.getAllDonators();
-		return ResponseEntity.ok(donatorVO);
 	}
 
 	@PutMapping

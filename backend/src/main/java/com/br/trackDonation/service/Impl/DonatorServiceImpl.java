@@ -27,6 +27,11 @@ public class DonatorServiceImpl implements DonatorService {
 	}
 	
 	@Override
+	public List<Object[]> getDonator(Integer id) {
+		return donatorDAO.getDonator(id);
+	}
+	
+	@Override
 	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
 		int a =1;
 		if(a==1) {
