@@ -28,21 +28,26 @@ public class DonatorServiceImpl implements DonatorService {
 	
 	@Override
 	public List<Object[]> getDonator(Integer id) {
-		return donatorDAO.getDonator(id);
+		this.checkDonatorExistence(id);
+		return donatorDAO.getDonator(id); 
 	}
 	
 	@Override
 	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
-		int a =1;
-		if(a==1) {
-			throw new UserNotFoundException("Usuário não existente");
-		}
+		this.checkDonatorExistence(id);
 		return donatorDAO.updateDonator(id, name, donation, email, phone);
 	}
 	
 	@Override
 	public void deleteDonator(Integer id) {
+		this.checkDonatorExistence(id);
 		donatorDAO.deleteDonator(id);
 	}
-
+	
+	@Override
+	public void checkDonatorExistence(Integer id) {
+		if(donatorDAO.getDonator(id).isEmpty()) {
+			throw new UserNotFoundException("Não existe um usuário com esse id");
+		}	
+	}
 }
