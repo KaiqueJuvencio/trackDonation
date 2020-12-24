@@ -1,36 +1,38 @@
 package com.br.trackDonation.exception;
 
+import java.time.Instant;
+
 import org.springframework.http.HttpStatus;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseErrorMessage {
-	@JsonProperty(value = "errorType")
-	private HttpStatus error;
-	@JsonProperty(value = "errorCode")
-	private int status;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private Instant timestamp;
+	private HttpStatus status;
+	private int statusCode;
 	private String message;
+	@JsonProperty(value = "pathUri")
+	private String path;
 	
-	public ResponseErrorMessage(int status, HttpStatus error, String message) {
-		super();
-		this.status = status;
-		this.error = error;
-		this.message = message;
+	public Instant getTimestamp() {
+		return timestamp;
 	}
-	
-	public int getStatus() {
+	public void setTimestamp(Instant timestamp) {
+		this.timestamp = timestamp;
+	}
+	public HttpStatus getStatus() {
 		return status;
 	}
-
-	public void setStatus(int status) {
+	public void setStatus(HttpStatus status) {
 		this.status = status;
 	}
-
-	public HttpStatus getError() {
-		return error;
+	public int getStatusCode() {
+		return statusCode;
 	}
-	public void setError(HttpStatus error) {
-		this.error = error;
+	public void setStatusCode(int statusCode) {
+		this.statusCode = statusCode;
 	}
 	public String getMessage() {
 		return message;
@@ -38,9 +40,15 @@ public class ResponseErrorMessage {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	@Override
 	public String toString() {
-		return "ResponseErrorMessage [status=" + status + ", error=" + error + ", message=" + message + "]";
+		return "ResponseErrorMessage [timestamp=" + timestamp + ", status=" + status + ", statusCode=" + statusCode
+				+ ", message=" + message + ", path=" + path + "]";
 	}
 }
