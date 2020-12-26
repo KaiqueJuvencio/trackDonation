@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.br.trackDonation.controller.exception.UserNotFoundException;
 import com.br.trackDonation.dao.DonatorDAO;
 import com.br.trackDonation.domains.DonatorVO;
 import com.br.trackDonation.exception.BadRequestException;
+import com.br.trackDonation.exception.UserNotFoundException;
 import com.br.trackDonation.service.DonatorService;
 
 @Service
@@ -48,7 +48,7 @@ public class DonatorServiceImpl implements DonatorService {
 	@Override
 	public void checkDonatorExistence(Integer id) {
 		if(donatorDAO.getDonator(id).isEmpty()) {
-			throw new BadRequestException("Não existe um usuário com esse id");
+			throw new UserNotFoundException("Não existe um usuário com esse id");
 		}	
 	}
 }

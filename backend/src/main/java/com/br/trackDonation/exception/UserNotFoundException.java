@@ -1,4 +1,4 @@
-package com.br.trackDonation.controller.exception;
+package com.br.trackDonation.exception;
 
 public class UserNotFoundException extends RuntimeException{
 
