@@ -24,25 +24,41 @@ public class DonatorServiceImpl implements DonatorService {
 	
 	@Override
 	public List<Object[]> getAllDonators() {
-		return donatorDAO.getAllDonators();
+		try {
+			return donatorDAO.getAllDonators(); 
+		}catch(Exception e){
+			throw new BadRequestException("Falha ao retornar doadores");
+		}
 	}
 	
 	@Override
 	public List<Object[]> getDonator(Integer id) {
 		this.checkDonatorExistence(id);
-		return donatorDAO.getDonator(id); 
+		try {
+			return donatorDAO.getDonator(id); 
+		}catch(Exception e){
+			throw new BadRequestException("Falha ao retornar doador");
+		}
 	}
 	
 	@Override
 	public DonatorVO updateDonator(Integer id, String name, String donation, String email, String phone) {
 		this.checkDonatorExistence(id);
-		return donatorDAO.updateDonator(id, name, donation, email, phone);
+		try {
+			return donatorDAO.updateDonator(id, name, donation, email, phone);
+		}catch(Exception e){
+			throw new BadRequestException("Falha ao atualizar doador");
+		}
 	}
 	
 	@Override
 	public void deleteDonator(Integer id) {
 		this.checkDonatorExistence(id);
-		donatorDAO.deleteDonator(id);
+		try {
+			donatorDAO.deleteDonator(id);
+		}catch(Exception e){
+			throw new BadRequestException("Falha ao excluir doador");
+		}
 	}
 	
 	@Override

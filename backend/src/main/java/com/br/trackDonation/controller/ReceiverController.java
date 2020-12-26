@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,7 +64,8 @@ public class ReceiverController {
 	}
 
 	@DeleteMapping
-	public String deleteReceiver(@RequestParam Integer id) {
-		return receiverService.deleteReceiver(id);
+	public ResponseEntity<String> deleteReceiver(@RequestParam Integer id) {
+		receiverService.deleteReceiver(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Receptor excluído com sucesso");
 	}
 }

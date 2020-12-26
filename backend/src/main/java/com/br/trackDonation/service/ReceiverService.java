@@ -17,5 +17,5 @@ public interface ReceiverService {
 			String dateOfBirth, String phone, String address, String family, Integer residentsQuantity,
 			String monthGotDonation, MultipartFile receiverPhoto) throws IOException;
 
-	public String deleteReceiver(Integer id);
+	public void deleteReceiver(Integer id);
 }
