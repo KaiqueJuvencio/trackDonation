@@ -257,7 +257,7 @@ body {
   }
   
   .detail-active {
-    border-bottom: 2px solid #39dd62;
+    border-bottom: 3px solid #39dd62;
   }
   
   .has-error-block {
@@ -279,3 +279,17 @@ body {
       opacity: 0;
       max-height: 0px;
   }
+
+  .menu-intern-container {
+    margin-left: 46%;
+    margin-top: 5%;
+}
+
+a.pull-left{
+  margin-right: 3%;
+  font-size: 25px;
+}
+
+a.pull-right{
+  font-size: 25px;
+}
