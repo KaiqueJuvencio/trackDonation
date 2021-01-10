@@ -1,1 +1,10 @@
 <p>donator works!</p>
+<div class="box-footer detail-footer">
+    <a class="pull-left detail-active" routerLinkActive="detail-active" [routerLink]="['consulta']">
+      Consulta
+   </a>
+   <a class="pull-right" routerLinkActive="detail-active" [routerLink]="['cadastro']">
+      Cadastro
+   </a>
+  </div>
+<router-outlet></router-outlet>

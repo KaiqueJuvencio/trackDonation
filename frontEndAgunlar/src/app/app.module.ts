@@ -7,13 +7,17 @@ import { DonatorComponent } from './donator/donator.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { ReceiverComponent } from './receiver/receiver.component';
+import { DonatorConsultaComponent } from './donator/donator-consulta/donator-consulta.component';
+import { DonatorCadastroComponent } from './donator/donator-cadastro/donator-cadastro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DonatorComponent,
-    ReceiverComponent
+    ReceiverComponent,
+    DonatorConsultaComponent,
+    DonatorCadastroComponent
   ],
   imports: [
     BrowserModule,
