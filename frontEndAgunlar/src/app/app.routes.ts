@@ -5,11 +5,11 @@ import { DonatorComponent } from './donator/donator.component'
 import { ReceiverComponent } from './receiver/receiver.component'
 
 export const ROUTES: Routes = [
-  {path: '', component: DonatorComponent},
+  // {path: '', component: DonatorComponent},
    {path: 'donator', component: DonatorComponent},
    {path: 'receiver', component: ReceiverComponent},
    {
-      path: 'donator',
+      path: 'gerenciar',
       component: DonatorComponent,
       children: [
         {path: '', redirectTo: 'geral', pathMatch: 'full',data: {animation: 'primeira'}},
