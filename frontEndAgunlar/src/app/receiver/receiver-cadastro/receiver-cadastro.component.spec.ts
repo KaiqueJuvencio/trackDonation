@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DonatorCadastroComponent } from './donator-cadastro.component';
+import { ReceiverCadastroComponent } from './receiver-cadastro.component';
 
-describe('DonatorCadastroComponent', () => {
-  let component: DonatorCadastroComponent;
-  let fixture: ComponentFixture<DonatorCadastroComponent>;
+describe('ReceiverCadastroComponent', () => {
+  let component: ReceiverCadastroComponent;
+  let fixture: ComponentFixture<ReceiverCadastroComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DonatorCadastroComponent ]
+      declarations: [ ReceiverCadastroComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DonatorCadastroComponent);
+    fixture = TestBed.createComponent(ReceiverCadastroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
