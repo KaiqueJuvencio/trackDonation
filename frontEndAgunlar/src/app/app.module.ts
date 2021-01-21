@@ -7,7 +7,6 @@ import { DonatorComponent } from './donator/donator.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ROUTES } from './app.routes';
-import { ReceiverComponent } from './receiver/receiver.component';
 import { DonatorConsultaComponent } from './donator/donator-consulta/donator-consulta.component';
 import { DonatorCadastroComponent } from './donator/donator-cadastro/donator-cadastro.component';
 
@@ -16,7 +15,6 @@ import { DonatorCadastroComponent } from './donator/donator-cadastro/donator-cad
     AppComponent,
     HeaderComponent,
     DonatorComponent,
-    ReceiverComponent,
     DonatorConsultaComponent,
     DonatorCadastroComponent
   ],
