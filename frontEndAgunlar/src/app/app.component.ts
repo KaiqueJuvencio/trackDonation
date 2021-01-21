@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'track-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  animations: [ slideInAnimation ]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'frontEndAgunlar';
