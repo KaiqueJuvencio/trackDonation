@@ -1,3 +1,4 @@
+import { ReceiverService } from './../../services/receiver.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceiverConsultaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private receiverService: ReceiverService) { }
 
   ngOnInit() {
+    this.receiverService.findAllReceivers()
+      .subscribe(receivers =>{
+        console.log(receivers);
+    })
   }
-
 }
